@@ -1,12 +1,10 @@
 #include <SDL_rect.h>
 #include <SDL_timer.h>
-
-#include "./Entities/Entity.h"
-
 #include <iostream>
 
-#include "./Core/Sprite.h"
-#include "./Managers/TextureManager.h"
+#include "Entities/Entity.h"
+#include "Core/Sprite.h"
+#include "Managers/TextureManager.h"
 
 
 Entity::Entity(const char* texturePath)

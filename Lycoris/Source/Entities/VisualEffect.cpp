@@ -1,11 +1,11 @@
-#include "./Extras/VisualEffect.h"
+#include "Extras/VisualEffect.h"
 
-#include <iostream>
-#include "managers/TextureManager.h"
 #include <SDL_rect.h>
+#include <iostream>
 
-#include "./Core/Sprite.h"
-#include "./R-Type/Entities/Player.h"
+#include "managers/TextureManager.h"
+#include "Core/Sprite.h"
+#include "R-Type/Entities/Player.h"
 
 
 VisualEffect::VisualEffect(const char* texturePath, const int columns, const int rows, float posX, float posY,

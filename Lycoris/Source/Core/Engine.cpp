@@ -1,15 +1,15 @@
 #include <SDL.h>
 
 //Util
-#include "./Core/Utility/DeltaTime.h"
-#include "./Core/Utility/KeyStates.h"
+#include "Utility/DeltaTime.h"
+#include "Utility/KeyStates.h"
 #include "Core/Utility/AppGlobals.h"
 
-#include "./Core/Engine.h"
+#include "Core/Engine.h"
 
-#include "./Managers/TextureManager.h"
-#include "./Managers/GameStateManager.h"
-#include "./Managers/ResourceManager.h"
+#include "Managers/TextureManager.h"
+#include "Managers/GameStateManager.h"
+#include "Managers/ResourceManager.h"
 
 DeltaTime dt;
 GameStateManager stateManager;

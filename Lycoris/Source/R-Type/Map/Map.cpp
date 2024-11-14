@@ -2,14 +2,14 @@
 #include <sstream>
 #include <SDL_rect.h>
 
-#include "./managers/TextureManager.h"
-#include "./Core/Sprite.h"
+#include "managers/TextureManager.h"
+#include "Core/Sprite.h"
 
-#include "./R-Type/Map/Map.h"
+#include "R-Type/Map/Map.h"
 
 #include "Managers/EnemyManager.h"
-#include "./R-Type/Map/Tile.h"
-#include "./R-Type/Map/Camera.h"
+#include "R-Type/Map/Tile.h"
+#include "R-Type/Map/Camera.h"
 
 Map::Map(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows)
 {

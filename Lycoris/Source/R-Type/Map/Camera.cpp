@@ -1,4 +1,4 @@
-#include "./R-Type/Map/Camera.h"
+#include "R-Type/Map/Camera.h"
 
 void Camera::MoveCamera(const float deltaTime)
 {

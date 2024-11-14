@@ -1,6 +1,5 @@
 #pragma once
 #include <memory>
-
 #include "Core/Animation.h"
 
 class Sprite;

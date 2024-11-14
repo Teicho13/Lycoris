@@ -1,5 +1,5 @@
-#include "./Core/Animation.h"
-#include "./Extras/VisualEffect.h"
+#include "Core/Animation.h"
+#include "Extras/VisualEffect.h"
 
 void Animation::Initialize(int maxFrame, VisualEffect* vfx) { if (maxFrame <= 0) { m_MaxFrames = 1; } m_MaxFrames = maxFrame; m_VFX = vfx; }
 

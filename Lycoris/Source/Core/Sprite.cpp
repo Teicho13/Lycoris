@@ -1,4 +1,4 @@
-#include "./Core/Sprite.h"
+#include "Sprite.h"
 
 #include "managers/TextureManager.h"
 #include <SDL_rect.h>

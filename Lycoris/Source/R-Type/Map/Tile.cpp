@@ -1,4 +1,4 @@
-#include "./R-Type/Map/Tile.h"
+#include "R-Type/Map/Tile.h"
 
 Tile::Tile(const int id)
 {

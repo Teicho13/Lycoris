@@ -1,5 +1,5 @@
 #pragma once
-#include "./Core/GameState.h"
+#include "Core/GameState.h"
 
 class Map;
 class PlayState : public GameState

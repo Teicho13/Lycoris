@@ -1,8 +1,7 @@
-#include "./R-Type/Entities/Projectile.h"
-
+#include "R-Type/Entities/Projectile.h"
 #include <iostream>
 
-#include "./Core/Sprite.h"
+#include "Core/Sprite.h"
 
 Projectile::Projectile(const char* texturePath)
 	:Entity(texturePath)

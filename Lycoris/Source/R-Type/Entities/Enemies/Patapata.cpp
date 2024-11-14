@@ -1,8 +1,8 @@
-#include "./R-Type/Entities/Enemies/Patapata.h"
+#include "R-Type/Entities/Enemies/Patapata.h"
 
 #include <iostream>
 #include <SDL_timer.h>
-#include "./Core/Sprite.h"
+#include "Core/Sprite.h"
 
 Patapata::Patapata(const char* texturePath, const int columns, const int rows)
 	: Entity(texturePath, columns, rows)

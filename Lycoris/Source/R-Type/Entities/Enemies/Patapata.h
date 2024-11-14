@@ -1,5 +1,5 @@
 #pragma once
-#include "./Entities/Entity.h"
+#include "Entities/Entity.h"
 
 class Patapata : public Entity
 {

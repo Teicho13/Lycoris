@@ -2,14 +2,14 @@
 
 #include <iostream>
 #include <SDL_events.h>
-#include "./Core/Sprite.h"
-#include "./Managers/ProjectileManager.h"
-#include "./Managers/EnemyManager.h"
-#include "./R-Type/Entities/Player.h"
-#include "./R-Type/Entities/Bullet.h"
-#include "./R-Type/Entities/Enemies/Patapata.h"
-#include "./R-Type/Map/Camera.h"
-#include "./R-Type/Map/Map.h"
+#include "Core/Sprite.h"
+#include "Managers/ProjectileManager.h"
+#include "Managers/EnemyManager.h"
+#include "R-Type/Entities/Player.h"
+#include "R-Type/Entities/Bullet.h"
+#include "R-Type/Entities/Enemies/Patapata.h"
+#include "R-Type/Map/Camera.h"
+#include "R-Type/Map/Map.h"
 
 PlayState PlayState::m_PlayState;
 
