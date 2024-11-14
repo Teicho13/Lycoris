@@ -6,7 +6,7 @@
 #include "./Core/Sprite.h"
 
 #include "./Core/Utility/KeyStates.h"
-#include "./Core/Utility/AppGlobals.h"
+#include "./Core/Utility/AppConfig.h"
 #include "R-Type/Map/Camera.h"
 #include "R-Type/Map/Map.h"
 #include "R-Type/Map/Tile.h"
@@ -146,14 +146,14 @@ void Player::HandleBoundChecks()
 		SetPosX(0);
 	}
 
-	if(static_cast<int>(GetPosY()) + GetHeight() >= m_WindowHeight)
+	if(static_cast<int>(GetPosY()) + GetHeight() >= AppConfig::Height)
 	{
-		SetPosY(static_cast<float>(m_WindowHeight - GetHeight()));
+		SetPosY(static_cast<float>(AppConfig::Height - GetHeight()));
 	}
 
-	if(static_cast<int>(GetPosX()) + GetWidth() >= m_WindowWidth)
+	if(static_cast<int>(GetPosX()) + GetWidth() >= AppConfig::Width)
 	{
-		SetPosX(static_cast<float>(m_WindowWidth - GetWidth()));
+		SetPosX(static_cast<float>(AppConfig::Width - GetWidth()));
 	}
 }
 

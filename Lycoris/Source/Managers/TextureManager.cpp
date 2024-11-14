@@ -1,12 +1,8 @@
 #include "./managers/TextureManager.h"
 #include "./Managers/ResourceManager.h"
+#include "Core/Graphics/Renderer.h"
 
 #include <SDL_image.h>
-
-void TextureManager::SetRenderer(SDL_Renderer* renderer)
-{
-	m_Renderer = renderer;
-}
 
 SDL_Texture* TextureManager::CreateTexture(const char* texturePath)
 {
@@ -36,29 +32,29 @@ void TextureManager::DeleteTexture(SDL_Texture* texture)
 
 void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_FRect* position)
 {
-	SDL_RenderCopyF(m_Renderer, texture, NULL, position);
+	SDL_RenderCopyF(Renderer::GetRenderer(), texture, NULL, position);
 }
 
 void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_Rect* sourcePos, const SDL_FRect* position)
 {
-	SDL_RenderCopyF(m_Renderer, texture, sourcePos, position);
+	SDL_RenderCopyF(Renderer::GetRenderer(), texture, sourcePos, position);
 }
 
 void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_Rect* position)
 {
-	SDL_RenderCopy(m_Renderer, texture, NULL, position);
+	SDL_RenderCopy(Renderer::GetRenderer(), texture, NULL, position);
 }
 
 void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_Rect* sourcePos, const SDL_Rect* position)
 {
-	SDL_RenderCopy(m_Renderer, texture, sourcePos, position);
+	SDL_RenderCopy(Renderer::GetRenderer(), texture, sourcePos, position);
 }
 
 void TextureManager::RenderBox(const float posX, const float posY, const float width, const float height)
 {
-	SDL_SetRenderDrawColor(m_Renderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 255, 0, 0, 255);
 	SDL_FRect tempRect = SDL_FRect(posX, posY, width, height);
-	SDL_RenderDrawRectF(m_Renderer, &tempRect);
+	SDL_RenderDrawRectF(Renderer::GetRenderer(), &tempRect);
 }
 
 

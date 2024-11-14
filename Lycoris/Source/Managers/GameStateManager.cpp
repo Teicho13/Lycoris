@@ -1,8 +1,7 @@
-#include "./Managers/GameStateManager.h"
+#include "Managers/GameStateManager.h"
 
-#include "./Core/GameState.h"
-#include "./R-Type/GameStates/PlayState.h"
-
+#include "Core/GameState.h"
+#include "R-Type/GameStates/PlayState.h"
 
 
 void GameStateManager::Init()

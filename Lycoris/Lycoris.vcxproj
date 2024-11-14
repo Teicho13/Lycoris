@@ -90,6 +90,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Core\Animation.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Renderer.cpp" />
+    <ClCompile Include="Source\Core\Graphics\Window.cpp" />
     <ClCompile Include="Source\Core\Sprite.cpp" />
     <ClCompile Include="Source\Entities\VisualEffect.cpp" />
     <ClCompile Include="Source\Main.cpp">
@@ -200,8 +202,10 @@
     <ClInclude Include="Source\Core\Animation.h" />
     <ClInclude Include="Source\Core\Engine.h" />
     <ClInclude Include="Source\Core\GameState.h" />
+    <ClInclude Include="Source\Core\Graphics\Renderer.h" />
+    <ClInclude Include="Source\Core\Graphics\Window.h" />
     <ClInclude Include="Source\Core\Sprite.h" />
-    <ClInclude Include="Source\Core\Utility\AppGlobals.h" />
+    <ClInclude Include="Source\Core\Utility\AppConfig.h" />
     <ClInclude Include="Source\Core\Utility\DeltaTime.h" />
     <ClInclude Include="Source\Core\Utility\KeyStates.h" />
     <ClInclude Include="Source\Entities\Entity.h" />

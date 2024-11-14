@@ -1,4 +1,5 @@
-#include "./Managers/ResourceManager.h"
+#include "ResourceManager.h"
+#include "Core/Graphics/Renderer.h"
 
 #include <SDL_surface.h>
 #include <SDL_render.h>
@@ -10,15 +11,10 @@ ResourceManager& ResourceManager::GetInstance()
 	return rm;
 }
 
-void ResourceManager::SetRenderer(SDL_Renderer* renderer)
-{
-	m_Renderer = renderer;
-}
-
 SDL_Surface* ResourceManager::GetSurface(const std::string& filePath)
 {
 	//Look for surface
-	auto search = m_Surfaces.find(filePath);
+	const auto search = m_Surfaces.find(filePath);
 	if(search != m_Surfaces.end())
 	{
 		//Return existing surface
@@ -33,13 +29,13 @@ SDL_Surface* ResourceManager::GetSurface(const std::string& filePath)
 
 SDL_Texture* ResourceManager::GetTexture(const std::string &filePath)
 {
-	auto search = m_Textures.find(filePath);
+	const auto search = m_Textures.find(filePath);
 	if (search != m_Textures.end())
 	{
 		return m_Textures[filePath];
 	}
 
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_Renderer, GetSurface(filePath));
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(Renderer::GetRenderer(), GetSurface(filePath));
 	m_Textures.insert(std::make_pair(filePath, texture));
 	return m_Textures[filePath];
 }
