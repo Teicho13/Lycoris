@@ -9,10 +9,13 @@
 #include "Graphics/Window.h"
 
 #include "Managers/GameStateManager.h"
+#include "Managers/SceneManager.h"
+#include "R-Type/Scenes/Encounter.h"
 
 
 DeltaTime dt;
 GameStateManager stateManager;
+SceneManager sceneManager;
 
 void Engine::Run()
 {
@@ -23,12 +26,12 @@ void Engine::Run()
 		return;
 	}
 
-	while(stateManager.GetIsRunning())
+	while(sceneManager.IsRunning())
 	{
 		dt.Update();
 		HandleEvents();
 		
-		if(!stateManager.GetIsRunning())
+		if(!sceneManager.IsRunning())
 		{
 			Shutdown();
 			return;
@@ -63,7 +66,9 @@ bool Engine::Init()
 	//Pointer to keyboard button states
 	g_KeyStates = SDL_GetKeyboardState(nullptr);
 
-	stateManager.Init();
+	//stateManager.Init();
+	sceneManager.ChangeScene(std::make_unique<Encounter>());
+	sceneManager.Start();
 
 	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 27, 146, 214, 255);
 	
@@ -72,7 +77,8 @@ bool Engine::Init()
 
 void Engine::Update(float deltaTime)
 {
-	stateManager.Update(deltaTime);
+	//stateManager.Update(deltaTime);
+	sceneManager.Update(deltaTime);
 }
 
 void Engine::Shutdown()
@@ -84,14 +90,15 @@ void Engine::Shutdown()
 
 void Engine::Render()
 {
-	if (!stateManager.GetIsRunning()) return;
+	if (!sceneManager.IsRunning()) return;
 
 	//Clear render screen for new frame
 	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 27, 146, 214, 255);
 	SDL_RenderClear(Renderer::GetRenderer());
 
 	//<-- Render Game Objects here -->
-	stateManager.Render();
+	//stateManager.Render();
+	sceneManager.Render();
 
 	//Render everything to the screen
 	SDL_RenderPresent(Renderer::GetRenderer());
@@ -99,7 +106,8 @@ void Engine::Render()
 
 void Engine::HandleEvents()
 {
-	stateManager.HandleEvents();
+	//stateManager.HandleEvents();
+	sceneManager.HandleEvents();
 }
 
 
