@@ -8,13 +8,12 @@
 #include "Graphics/Renderer.h"
 #include "Graphics/Window.h"
 
-#include "Managers/GameStateManager.h"
 #include "Managers/SceneManager.h"
 #include "R-Type/Scenes/Encounter.h"
 
 
 DeltaTime dt;
-GameStateManager stateManager;
+
 SceneManager sceneManager;
 
 void Engine::Run()
@@ -65,8 +64,7 @@ bool Engine::Init()
 	
 	//Pointer to keyboard button states
 	g_KeyStates = SDL_GetKeyboardState(nullptr);
-
-	//stateManager.Init();
+	
 	sceneManager.ChangeScene(std::make_unique<Encounter>());
 	sceneManager.Start();
 
@@ -77,7 +75,6 @@ bool Engine::Init()
 
 void Engine::Update(float deltaTime)
 {
-	//stateManager.Update(deltaTime);
 	sceneManager.Update(deltaTime);
 }
 
@@ -97,7 +94,6 @@ void Engine::Render()
 	SDL_RenderClear(Renderer::GetRenderer());
 
 	//<-- Render Game Objects here -->
-	//stateManager.Render();
 	sceneManager.Render();
 
 	//Render everything to the screen
@@ -106,7 +102,6 @@ void Engine::Render()
 
 void Engine::HandleEvents()
 {
-	//stateManager.HandleEvents();
 	sceneManager.HandleEvents();
 }
 

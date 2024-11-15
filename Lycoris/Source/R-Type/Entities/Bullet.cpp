@@ -1,9 +1,5 @@
 #include "./R-Type/Entities/Bullet.h"
-
-#include <iostream>
-
-#include "./Core/Sprite.h"
-#include "./Core/Utility/AppGlobals.h"
+#include "./Core/Utility/AppConfig.h"
 
 Bullet::Bullet(const char* texturePath)
 	: Projectile(texturePath)
@@ -26,7 +22,7 @@ void Bullet::Update(float deltaTime)
 {
 	SetPosX(GetPosX() + GetMoveSpeed() * deltaTime);
 
-	if(static_cast<int>(GetPosX()) + GetWidth() > m_WindowWidth)
+	if(static_cast<int>(GetPosX()) + GetWidth() > AppConfig::Width)
 	{
 		m_CanRemove = true;
 	}

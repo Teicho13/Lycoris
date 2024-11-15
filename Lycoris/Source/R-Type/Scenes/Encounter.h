@@ -2,7 +2,6 @@
 #pragma once
 #include "Core/Scene.h"
 
-class Map;
 class Encounter : public Scene
 {
 public:
@@ -11,7 +10,4 @@ public:
     void Render() override;
     void Destroy() override;
     void HandleEvents() override;
-
-private:
-    Map* m_Level01 = nullptr;
 };

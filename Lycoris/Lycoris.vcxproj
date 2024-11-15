@@ -174,12 +174,10 @@
     <ClCompile Include="Source\Managers\SceneManager.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Bullet.cpp" />
     <ClCompile Include="Source\Entities\Entity.cpp" />
-    <ClCompile Include="Source\Managers\GameStateManager.cpp" />
     <ClCompile Include="Source\Managers\TextureManager.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Enemies\Patapata.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Player.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Projectile.cpp" />
-    <ClCompile Include="Source\R-Type\GameStates\PlayState.cpp" />
     <ClCompile Include="Source\R-Type\Map\Camera.cpp" />
     <ClCompile Include="Source\R-Type\Map\Map.cpp" />
     <ClCompile Include="Source\R-Type\Map\Tile.cpp" />
@@ -203,7 +201,6 @@
   <ItemGroup>
     <ClInclude Include="Source\Core\Animation.h" />
     <ClInclude Include="Source\Core\Engine.h" />
-    <ClInclude Include="Source\Core\GameState.h" />
     <ClInclude Include="Source\Core\Graphics\Renderer.h" />
     <ClInclude Include="Source\Core\Graphics\Window.h" />
     <ClInclude Include="Source\Core\Scene.h" />
@@ -214,7 +211,6 @@
     <ClInclude Include="Source\Entities\Entity.h" />
     <ClInclude Include="Source\Extras\VisualEffect.h" />
     <ClInclude Include="Source\Managers\EnemyManager.h" />
-    <ClInclude Include="Source\Managers\GameStateManager.h" />
     <ClInclude Include="Source\Managers\ProjectileManager.h" />
     <ClInclude Include="Source\Managers\ResourceManager.h" />
     <ClInclude Include="Source\Managers\SceneManager.h" />
@@ -223,7 +219,6 @@
     <ClInclude Include="Source\R-Type\Entities\Enemies\Patapata.h" />
     <ClInclude Include="Source\R-Type\Entities\Player.h" />
     <ClInclude Include="Source\R-Type\Entities\Projectile.h" />
-    <ClInclude Include="Source\R-Type\GameStates\PlayState.h" />
     <ClInclude Include="Source\R-Type\Map\Camera.h" />
     <ClInclude Include="Source\R-Type\Map\Map.h" />
     <ClInclude Include="Source\R-Type\Map\Tile.h" />

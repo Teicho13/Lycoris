@@ -47,7 +47,7 @@ void SceneManager::ChangeScene(std::unique_ptr<Scene> newScene)
 {
     if(newScene != nullptr)
     {
-        //Remove current state
+        //Remove current scene
         RemoveScene();
 
         //Add new scene to the back
@@ -64,7 +64,7 @@ void SceneManager::ChangeScene(std::unique_ptr<Scene> newScene)
 //Removes last scene (LIFO)
 void SceneManager::RemoveScene()
 {
-    //Remove current state
+    //Remove current scene
     if (!m_Scenes.empty())
     {
         //call Shutdown for current state before removal to clean up.

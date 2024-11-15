@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "Core/Animation.h"
+#include "Core/Sprite.h"
 
 class Sprite;
 class Entity

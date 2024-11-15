@@ -1,8 +1,9 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include "R-Type/Entities/Projectile.h"
 
-class Projectile;
+
 class Player;
 class Map;
 class EnemyManager;

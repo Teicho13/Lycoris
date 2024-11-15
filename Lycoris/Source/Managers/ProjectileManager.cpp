@@ -1,8 +1,4 @@
 #include "./Managers/ProjectileManager.h"
-
-#include <iostream>
-
-#include "./R-Type/Entities/Projectile.h"
 #include "./R-Type/Entities/Bullet.h"
 #include "./R-Type/Entities/Player.h"
 
