@@ -10,16 +10,20 @@ class Map
 {
 public:
 
+	Map() = default;
 	Map(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows);
 	~Map();
 
+	void SetMapSheet(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows);
+	void ClearMapSheet();
+	
 	void CreateTiles(const char* textureMapPath);
-	void CreateEnemies(const char* EnemyMapPath, EnemyManager& enemyManager);
-	void DrawMap(Camera& cam) const;
 	void RemoveTiles() const;
 
-	bool HasTileCollision(int posX, int posX2, int posY, int posY2) const;
+	void CreateEnemies(const char* EnemyMapPath, EnemyManager& enemyManager);
+	void DrawMap(Camera& cam) const;
 
+	bool HasTileCollision(int posX, int posX2, int posY, int posY2) const;
 	Tile* GetTile(int row, int column) const;
 
 	static constexpr int m_MapRows = 12;

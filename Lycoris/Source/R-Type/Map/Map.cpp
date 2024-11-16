@@ -13,16 +13,26 @@
 
 Map::Map(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows)
 {
-	m_MapSheet = std::make_unique<Sprite>(tileSheetPath, columns, rows);
-
-	CreateTiles(textureMapPath);
+	SetMapSheet(textureMapPath,tileSheetPath,columns,rows);
 }
 
 Map::~Map()
 {
 	m_CanRender = false;
 	RemoveTiles();
-	m_MapSheet.reset();
+	ClearMapSheet();
+}
+
+void Map::SetMapSheet(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows)
+{
+	m_MapSheet = std::make_unique<Sprite>(tileSheetPath, columns, rows);
+
+	CreateTiles(textureMapPath);
+}
+
+void Map::ClearMapSheet()
+{
+	m_MapSheet.reset(nullptr);
 }
 
 void Map::CreateTiles(const char* textureMapPath)

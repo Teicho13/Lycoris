@@ -3,6 +3,11 @@
 #include "./R-Type/Entities/Projectile.h"
 #include "R-Type/Entities/Enemies/Patapata.h"
 
+EnemyManager::~EnemyManager()
+{
+	ClearEntities();
+}
+
 void EnemyManager::Update(float deltaTime)
 {
 	for (int i = 0; i < m_Enemies.size(); ++i)

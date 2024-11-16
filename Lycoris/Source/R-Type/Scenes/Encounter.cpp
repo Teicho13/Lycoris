@@ -13,10 +13,9 @@
 Player* player;
 Camera camera;
 
-Map* m_Level01 = nullptr;
-
-EnemyManager enemyManager;
-ProjectileManager projectileManager;
+Map g_EncounterMap;
+EnemyManager g_EnemyManager;
+ProjectileManager g_ProjectileManager;
 
 void Encounter::Init()
 {
@@ -26,8 +25,8 @@ void Encounter::Init()
     player->GetSprite()->SetFrame(2);
 
     //Create Map and Set enemies
-    m_Level01 = new Map("./Assets/Games/R-Type/MapData/Level01.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64.png", 22, 20);
-    m_Level01->CreateEnemies("./Assets/Games/R-Type/MapData/Enemies01.csv", enemyManager);
+    g_EncounterMap.SetMapSheet("./Assets/Games/R-Type/MapData/Level01.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64.png", 22, 20);
+    g_EncounterMap.CreateEnemies("./Assets/Games/R-Type/MapData/Enemies01.csv", g_EnemyManager);
 }
 
 void Encounter::Tick(float dt)
@@ -40,7 +39,7 @@ void Encounter::Tick(float dt)
     player->Update(dt);
     if(!player->IsExploding())
     {
-        if(player->HandleTileCollision(m_Level01))
+        if(player->HandleTileCollision(g_EncounterMap))
         {
             player->Explode();
             SDL_Delay(50);
@@ -51,27 +50,24 @@ void Encounter::Tick(float dt)
     }
 	
 	
-    projectileManager.Update(dt);
-    projectileManager.BulletCollisionCheck(*m_Level01, camera.GetPosX());
-    projectileManager.BulletEnemyCheck(enemyManager, camera.GetPosX());
-    enemyManager.Update(dt);
+    g_ProjectileManager.Update(dt);
+    g_ProjectileManager.BulletCollisionCheck(g_EncounterMap, camera.GetPosX());
+    g_ProjectileManager.BulletEnemyCheck(g_EnemyManager, camera.GetPosX());
+    g_EnemyManager.Update(dt);
 }
 
 void Encounter::Render()
 {
-    m_Level01->DrawMap(camera);
+    g_EncounterMap.DrawMap(camera);
     player->Draw();
-    projectileManager.Draw();
-    enemyManager.Draw();
+    g_ProjectileManager.Draw();
+    g_EnemyManager.Draw();
 }
 
 void Encounter::Destroy()
 {
-    projectileManager.ClearProjectiles();
-    enemyManager.ClearEntities();
     camera.ResetPosition();
     delete player;
-    delete m_Level01;
 }
 
 void Encounter::HandleEvents()
@@ -116,11 +112,11 @@ void Encounter::HandleEvents()
                     if (!player->FullyCharged())
                     {
                         //TODO: Replace with Charged Bullet type
-                        projectileManager.AddBullet(player);
+                        g_ProjectileManager.AddBullet(player);
                     }
                     else
                     {
-                        projectileManager.AddBullet(player);
+                        g_ProjectileManager.AddBullet(player);
                     }
                 }
             }

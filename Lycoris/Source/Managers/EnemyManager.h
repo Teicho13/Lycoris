@@ -10,6 +10,7 @@ class EnemyManager
 {
 public:
 	EnemyManager() = default;
+	~EnemyManager();
 
 	void Update(float deltaTime);
 	void Draw() const;

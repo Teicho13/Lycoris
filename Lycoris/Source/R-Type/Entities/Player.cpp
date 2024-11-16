@@ -75,7 +75,7 @@ void Player::Update(float deltaTime)
 	
 }
 
-bool Player::HandleTileCollision(Map* map) const
+bool Player::HandleTileCollision(Map& map) const
 {
 	if(m_CamerRef == nullptr)
 		return false;
@@ -90,7 +90,7 @@ bool Player::HandleTileCollision(Map* map) const
 	if (posY2 > (Map::m_MapRows - 1))
 		posY2 = 11;
 
-	if(map->HasTileCollision(posX, posX2, posY, posY2))
+	if(map.HasTileCollision(posX, posX2, posY, posY2))
 	{
 		return true;
 	}

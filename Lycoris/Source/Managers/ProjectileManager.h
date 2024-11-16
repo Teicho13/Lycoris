@@ -12,6 +12,7 @@ class ProjectileManager
 {
 public:
 	ProjectileManager() = default;
+	~ProjectileManager();
 
 	void Update(float deltaTime);
 	void BulletCollisionCheck(const Map& map, const float offsetX) const;

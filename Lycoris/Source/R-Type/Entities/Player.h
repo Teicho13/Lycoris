@@ -14,7 +14,7 @@ public:
 	void Draw() const override;
 
 	void Update(float deltaTime) override;
-	bool HandleTileCollision(Map* map) const;
+	bool HandleTileCollision(Map& map) const;
 
 	void SetCamera(Camera* camera);
 	Camera* GetCamera(Camera* camera) const;
