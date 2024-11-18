@@ -3,6 +3,7 @@
 #include "./R-Type/Entities/Projectile.h"
 #include "R-Type/Entities/Enemies/Patapata.h"
 
+#include "Core/Math/Collision.h"
 EnemyManager::~EnemyManager()
 {
 	ClearEntities();
@@ -36,15 +37,11 @@ bool EnemyManager::CheckBulletCollision(Projectile* bullet)
 	for (auto& enemy : m_Enemies)
 	{
 		//We do a simple AABB
-		if (enemy->GetPosition().x + static_cast<float>(enemy->GetSize().x) >= bullet->GetPosition().x &&
-			bullet->GetPosition().x + static_cast<float>(bullet->GetSize().x) >= enemy->GetPosition().x &&
-			enemy->GetPosition().y + static_cast<float>(enemy->GetSize().y) >= bullet->GetPosition().y &&
-			bullet->GetPosition().y + static_cast<float>(bullet->GetSize().y) >= enemy->GetPosition().y)
+		if(Collision::AABB(enemy->GetPosition(),enemy->GetSize(),bullet->GetPosition(),bullet->GetSize()))
 		{
 			enemy->SetCanDie();
 			return true;
 		}
-
 		return false;
 	}
 
