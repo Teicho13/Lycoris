@@ -1,6 +1,7 @@
 ﻿#include <SDL_events.h>
 #include "Encounter.h"
 
+#include "Managers/CollisionManager.h"
 #include "Managers/SceneManager.h"
 #include "Managers/EnemyManager.h"
 #include "Managers/ProjectileManager.h"
@@ -16,6 +17,7 @@ Camera camera;
 Map g_EncounterMap;
 EnemyManager g_EnemyManager;
 ProjectileManager g_ProjectileManager;
+CollisionManager g_CollisionManager;
 
 void Encounter::Init()
 {
@@ -27,6 +29,8 @@ void Encounter::Init()
     //Create Map and Set enemies
     g_EncounterMap.SetMapSheet("./Assets/Games/R-Type/MapData/Level01.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64.png", 22, 20);
     g_EncounterMap.CreateEnemies("./Assets/Games/R-Type/MapData/Enemies01.csv", g_EnemyManager);
+
+    g_CollisionManager.SetReferences(&g_ProjectileManager,&g_EnemyManager,player,&g_EncounterMap,&camera);
 }
 
 void Encounter::Tick(float dt)
@@ -51,9 +55,9 @@ void Encounter::Tick(float dt)
     }
 	
 	
+
+    g_CollisionManager.UpdateCollisions();
     g_ProjectileManager.Update(dt);
-    g_ProjectileManager.BulletCollisionCheck(g_EncounterMap, camera.GetPosX());
-    g_ProjectileManager.BulletEnemyCheck(g_EnemyManager, camera.GetPosX());
     g_EnemyManager.Update(dt);
 }
 

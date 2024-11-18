@@ -29,6 +29,11 @@ void EnemyManager::Draw() const
 	}
 }
 
+const std::vector<std::unique_ptr<Entity>>& EnemyManager::GetEnemies()
+{
+	return m_Enemies;
+}
+
 bool EnemyManager::CheckBulletCollision(Projectile* bullet)
 {
 	for (auto& enemy : m_Enemies)
@@ -43,6 +48,19 @@ bool EnemyManager::CheckBulletCollision(Projectile* bullet)
 	}
 
 	return false;
+}
+
+void EnemyManager::CheckPlayerCollision(Player* player)
+{
+	for (auto& enemy : m_Enemies)
+	{
+		if(Collision::AABB(player->GetPosition(),player->GetSize(),enemy->GetPosition(),enemy->GetSize()))
+		{
+			enemy->SetCanDie();
+			player->Explode();
+			SDL_Delay(50);
+		}
+	}
 }
 
 void EnemyManager::AddEntity(m_EnemyType type, int posX, int posY)
