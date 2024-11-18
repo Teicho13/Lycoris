@@ -26,6 +26,8 @@ public:
 	void SetMovementSpeed(float amount);
 	float GetMovementSpeed() const;
 
+	void ChangeHealth(int amount);
+	
 	void Die();
 	void Explode();
 	bool IsExploding() const;
@@ -37,6 +39,7 @@ public:
 	bool m_InputHeld = false;
 
 private:
+	int m_Lives = 1;
 	bool m_IsAlive = true;
 	bool m_IsExploding = false;
 	float m_MoveSpeed = 500.f;

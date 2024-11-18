@@ -52,8 +52,7 @@ void EnemyManager::CheckPlayerCollision(Player* player) const
 		if(Collision::AABB(player->GetPosition(),player->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 		{
 			enemy->SetCanDie();
-			player->Explode();
-			SDL_Delay(50);
+			player->ChangeHealth(-1);
 		}
 	}
 }

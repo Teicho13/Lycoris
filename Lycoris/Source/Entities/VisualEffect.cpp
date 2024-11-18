@@ -17,7 +17,7 @@ VisualEffect::VisualEffect(const char* texturePath, const int columns, const int
 	m_PosX = posX;
 	m_PosY = posY;
 	m_Animation.Initialize(m_Sprite->GetFrames(),this);
-	m_Animation.SetFrameDelay(100);
+	m_Animation.SetFrameSpeed(8);
 	m_Animation.SetLooped(looping);
 	m_Animation.ResetAnimation();
 	if(startOn)
@@ -56,9 +56,9 @@ void VisualEffect::Draw()
 	}
 }
 
-void VisualEffect::Update()
+void VisualEffect::Update(float dt)
 {
-	m_Animation.Update();
+	m_Animation.Update(dt);
 	GetSprite()->SetFrame(m_Animation.GetCurrentFrame());
 }
 

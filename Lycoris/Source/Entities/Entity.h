@@ -38,8 +38,8 @@ public:
 	SDL_FPoint GetPosition() const;
 	SDL_Point GetSize() const;
 
-	void Animate();
-	void SetFrameDelay(int delay);
+	void Animate(float dt);
+	void SetFrameSpeed(float delay);
 	Animation& GetAnimationComponent();
 
 	bool GetIsAnimated() const;

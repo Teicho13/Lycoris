@@ -21,7 +21,7 @@ Patapata::Patapata(const char* texturePath, const int columns, const int rows, f
 void Patapata::Update(float deltaTime)
 {
 	Move(deltaTime);
-	Animate();
+	Animate(deltaTime);
 	if(IsOutBounds())
 	{
 		Die();

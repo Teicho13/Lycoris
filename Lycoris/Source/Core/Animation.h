@@ -9,13 +9,13 @@ struct Animation
 	void SetLooped(bool val);
 
 	//Set Delay between each frame (in ms)
-	void SetFrameDelay(int val);
+	void SetFrameSpeed(float val);
 
 	void Play();
 	void Stop();
 	void ResetAnimation();
 
-	void Update();
+	void Update(const float dt);
 
 	bool IsLooped() const;
 	int GetCurrentFrame() const;
@@ -23,12 +23,13 @@ struct Animation
 private:
 	bool m_IsPlaying = false;
 	bool m_LoopAnimation = true;
-
-	//Delay in ms
-	int m_FrameDelay = 1000;
+	
+	float m_FrameSpeed = 1.f;
 
 	int m_CurrentFrame = 0;
 	int m_MaxFrames = 0;
 
 	VisualEffect* m_VFX = nullptr;
+
+	float m_time = 0.0f;
 };

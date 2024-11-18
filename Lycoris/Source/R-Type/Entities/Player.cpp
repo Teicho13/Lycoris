@@ -72,14 +72,14 @@ void Player::Update(float deltaTime)
 		ChargeBullet(deltaTime);
 		if(m_InputHeld)
 		{
-			m_ChargeVFX->Update();
+			m_ChargeVFX->Update(deltaTime);
 		}
 	}
 	else
 	{
 		m_DieVFX->SetPosX(GetPosition().x);
 		m_DieVFX->SetPosY(GetPosition().y);
-		m_DieVFX->Update();
+		m_DieVFX->Update(deltaTime);
 	}
 	
 }
@@ -174,6 +174,18 @@ void Player::SetMovementSpeed(float amount)
 float Player::GetMovementSpeed() const
 {
 	return m_MoveSpeed;
+}
+
+void Player::ChangeHealth(int amount)
+{
+	m_Lives += amount;
+
+	if(m_Lives <= 0)
+	{
+		m_DieVFX->SetPosX(GetPosition().x);
+		m_DieVFX->SetPosY(GetPosition().y);
+		Explode();
+	}
 }
 
 void Player::Die()

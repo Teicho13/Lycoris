@@ -41,13 +41,14 @@ void Encounter::Tick(float dt)
         SceneManager::GetSceneManager()->ChangeScene(std::make_unique<Encounter>());
         return;
     }
+    
     player->Update(dt);
+    
     if(!player->IsExploding())
     {
         if(player->HandleTileCollision(g_EncounterMap))
         {
-            player->Explode();
-            SDL_Delay(50);
+            player->ChangeHealth(-1);
             return;
         }
 
@@ -99,7 +100,6 @@ void Encounter::HandleEvents()
                     return;
                 }
             break;
-
         case SDL_MOUSEBUTTONDOWN:
             if (event.button.button == SDL_BUTTON_LEFT)
             {

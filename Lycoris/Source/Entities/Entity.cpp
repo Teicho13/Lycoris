@@ -15,7 +15,7 @@ Entity::Entity(const char* texturePath)
 	m_Position.x = 0.f;
 	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
-	m_Animation.SetFrameDelay(100);
+	m_Animation.SetFrameSpeed(8);
 }
 
 Entity::Entity(const char* texturePath, const int columns, const int rows)
@@ -26,7 +26,7 @@ Entity::Entity(const char* texturePath, const int columns, const int rows)
 	m_Position.x = 0.f;
 	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
-	m_Animation.SetFrameDelay(100);
+	m_Animation.SetFrameSpeed(8);
 }
 
 Entity::Entity(const char* texturePath, const int columns, const int rows, float posX, float posY)
@@ -37,7 +37,7 @@ Entity::Entity(const char* texturePath, const int columns, const int rows, float
 	m_Position.x = posX;
 	m_Position.y = posY;
 	m_Animation.Initialize(m_Sprite->GetFrames());
-	m_Animation.SetFrameDelay(100);
+	m_Animation.SetFrameSpeed(8);
 }
 
 void Entity::Draw() const
@@ -135,19 +135,18 @@ SDL_Point Entity::GetSize() const
 	return m_Size;
 }
 
-void Entity::Animate()
+void Entity::Animate(float dt)
 {
-	m_Animation.Update();
+	m_Animation.Update(dt);
 	GetSprite()->SetFrame(m_Animation.GetCurrentFrame());
 }
 
-//Sets delay between frames in ms
-void Entity::SetFrameDelay(int delay)
+void Entity::SetFrameSpeed(float delay)
 {
 	if (delay <= 0)
-		delay = 100;
+		delay = 1;
 
-	m_Animation.SetFrameDelay(delay);
+	m_Animation.SetFrameSpeed(delay);
 }
 
 Animation& Entity::GetAnimationComponent()

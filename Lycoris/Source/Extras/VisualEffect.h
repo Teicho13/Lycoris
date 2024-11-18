@@ -11,7 +11,7 @@ public:
 	VisualEffect(const char* texturePath, const int columns, const int rows, float posX, float posY, bool looping, bool startOn = true, Player* player = nullptr);
 	void Callback();
 	void Draw();
-	void Update();
+	void Update(const float dt);
 
 	void SetPosX(float newX);
 	void SetPosY(float newY);
