@@ -5,11 +5,6 @@
 #include "./R-Type/Map/Map.h"
 #include "./Managers/EnemyManager.h"
 
-ProjectileManager::~ProjectileManager()
-{
-	ClearProjectiles();
-}
-
 void ProjectileManager::Update(float deltaTime)
 {
 	for (int i = 0; i < m_Projectiles.size(); ++i)

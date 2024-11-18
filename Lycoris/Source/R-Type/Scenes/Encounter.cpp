@@ -33,6 +33,7 @@ void Encounter::Tick(float dt)
 {
     if(!player->IsAlive())
     {
+        SDL_Delay(500);
         SceneManager::GetSceneManager()->ChangeScene(std::make_unique<Encounter>());
         return;
     }
@@ -66,6 +67,9 @@ void Encounter::Render()
 
 void Encounter::Destroy()
 {
+    g_EncounterMap.ClearMap();
+    g_EnemyManager.ClearEntities();
+    g_ProjectileManager.ClearProjectiles();
     camera.ResetPosition();
     delete player;
 }

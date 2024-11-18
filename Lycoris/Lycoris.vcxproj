@@ -169,6 +169,7 @@
       <AdditionalIncludeDirectories>Source/;ThirdParty/SDL2/include;ThirdParty/SDL2-image/include;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Source\Managers\CollisionManager.cpp" />
     <ClCompile Include="Source\Managers\EnemyManager.cpp" />
     <ClCompile Include="Source\Managers\ProjectileManager.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Source\Core\Utility\KeyStates.h" />
     <ClInclude Include="Source\Entities\Entity.h" />
     <ClInclude Include="Source\Extras\VisualEffect.h" />
+    <ClInclude Include="Source\Managers\CollisionManager.h" />
     <ClInclude Include="Source\Managers\EnemyManager.h" />
     <ClInclude Include="Source\Managers\ProjectileManager.h" />
     <ClInclude Include="Source\Managers\ResourceManager.h" />

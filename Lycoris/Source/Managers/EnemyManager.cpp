@@ -4,10 +4,7 @@
 #include "R-Type/Entities/Enemies/Patapata.h"
 
 #include "Core/Math/Collision.h"
-EnemyManager::~EnemyManager()
-{
-	ClearEntities();
-}
+#include "R-Type/Entities/Player.h"
 
 void EnemyManager::Update(float deltaTime)
 {

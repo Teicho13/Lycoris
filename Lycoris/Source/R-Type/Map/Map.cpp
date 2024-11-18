@@ -16,13 +16,6 @@ Map::Map(const char* textureMapPath, const char* tileSheetPath, const int column
 	SetMapSheet(textureMapPath,tileSheetPath,columns,rows);
 }
 
-Map::~Map()
-{
-	m_CanRender = false;
-	RemoveTiles();
-	ClearMapSheet();
-}
-
 void Map::SetMapSheet(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows)
 {
 	m_MapSheet = std::make_unique<Sprite>(tileSheetPath, columns, rows);
@@ -165,6 +158,14 @@ void Map::DrawMap(Camera& cam) const
 			RenderSprite(id,posX,PosY);
 		}
 	}
+}
+
+//Clean up all tiles and reset sheet
+void Map::ClearMap()
+{
+	m_CanRender = false;
+	RemoveTiles();
+	ClearMapSheet();
 }
 
 void Map::RemoveTiles() const

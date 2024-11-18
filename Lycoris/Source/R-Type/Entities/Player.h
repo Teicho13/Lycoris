@@ -10,6 +10,7 @@ class Player : public Entity
 public:
 	Player(const char* texturePath);
 	Player(const char* texturePath, const int columns, const int rows);
+	~Player() override;
 
 	void Draw() const override;
 

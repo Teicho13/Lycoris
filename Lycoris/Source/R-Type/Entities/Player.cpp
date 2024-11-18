@@ -36,6 +36,15 @@ Player::Player(const char* texturePath, const int columns, const int rows)
 	m_DieVFX->SetPlayer(this);
 }
 
+Player::~Player()
+{
+	m_ChargeVFX.reset(nullptr);
+	m_DieVFX.reset(nullptr);
+	m_Charge = 0.f;
+	m_Charged = false;
+	m_CamerRef = nullptr;
+}
+
 void Player::Draw() const
 {
 	if(!IsExploding())

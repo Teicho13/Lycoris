@@ -12,7 +12,7 @@ public:
 
 	Map() = default;
 	Map(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows);
-	~Map();
+	~Map() = default;
 
 	void SetMapSheet(const char* textureMapPath, const char* tileSheetPath, const int columns, const int rows);
 	void ClearMapSheet();
@@ -22,6 +22,7 @@ public:
 
 	void CreateEnemies(const char* EnemyMapPath, EnemyManager& enemyManager);
 	void DrawMap(Camera& cam) const;
+	void ClearMap();
 
 	bool HasTileCollision(int posX, int posX2, int posY, int posY2) const;
 	Tile* GetTile(int row, int column) const;
