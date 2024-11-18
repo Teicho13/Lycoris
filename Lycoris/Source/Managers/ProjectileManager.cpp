@@ -1,4 +1,6 @@
 #include "./Managers/ProjectileManager.h"
+
+#include "TextureManager.h"
 #include "./R-Type/Entities/Bullet.h"
 #include "./R-Type/Entities/Player.h"
 
@@ -40,13 +42,13 @@ void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX
 	}
 }
 
-void ProjectileManager::BulletEnemyCheck(EnemyManager& em, const float offsetX) const
+void ProjectileManager::BulletEnemyCheck(const EnemyManager& enemyManager, const float offsetX) const
 {
-	for (auto& element : m_Projectiles)
+	for (auto& projectile : m_Projectiles)
 	{
-		if(em.CheckBulletCollision(element.get()))
+		if(enemyManager.CheckBulletCollision(projectile.get()))
 		{
-			element->SetCanDestroy();
+			projectile->SetCanDestroy();
 		}
 	}
 }
@@ -56,6 +58,7 @@ void ProjectileManager::Draw() const
 	for (const auto& projectile : m_Projectiles)
 	{
 		projectile->Draw();
+		//TextureManager::RenderBox(projectile->GetPosition().x,projectile->GetPosition().y, static_cast<float>(projectile->GetSize().x),static_cast<float>(projectile->GetSize().y),SDL_Color {255,0,0,255});
 	}
 }
 

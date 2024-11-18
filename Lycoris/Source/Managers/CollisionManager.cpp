@@ -16,7 +16,7 @@ void CollisionManager::SetReferences(ProjectileManager* projectileManager, Enemy
     m_CameraRef = cam;
 }
 
-void CollisionManager::UpdateCollisions()
+void CollisionManager::UpdateCollisions() const
 {
     m_ProjectileManagerRef->BulletCollisionCheck(*m_MapRef, m_CameraRef->GetPosX());
     m_ProjectileManagerRef->BulletEnemyCheck(*m_EnemyManagerRef, m_CameraRef->GetPosX());

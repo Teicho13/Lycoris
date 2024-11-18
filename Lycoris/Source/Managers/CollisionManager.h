@@ -10,7 +10,7 @@ class CollisionManager
 {
 public:
     void SetReferences(ProjectileManager* projectileManager, EnemyManager* enemyManager,Player* player, Map* map, Camera* cam);
-    void UpdateCollisions();
+    void UpdateCollisions() const;
     
 private:
     Player* m_PlayerRef = nullptr;

@@ -16,10 +16,8 @@ public:
 	void Update(float deltaTime);
 	void Draw() const;
 
-	const std::vector<std::unique_ptr<Entity>>& GetEnemies();
-
-	bool CheckBulletCollision(Projectile* bullet);
-	void CheckPlayerCollision(Player* player);
+	bool CheckBulletCollision(const Projectile* bullet) const;
+	void CheckPlayerCollision(Player* player) const;
 
 	void AddEntity(m_EnemyType type, int posX, int posY);
 	void ClearEntities();

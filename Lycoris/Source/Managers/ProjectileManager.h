@@ -16,7 +16,7 @@ public:
 
 	void Update(float deltaTime);
 	void BulletCollisionCheck(const Map& map, const float offsetX) const;
-	void BulletEnemyCheck(EnemyManager& em, const float offsetX) const;
+	void BulletEnemyCheck(const EnemyManager& enemyManager, const float offsetX) const;
 	void Draw() const;
 	void ClearProjectiles();
 

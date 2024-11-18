@@ -1,4 +1,6 @@
 #include "./Managers/EnemyManager.h"
+
+#include "TextureManager.h"
 #include "./Entities/Entity.h"
 #include "./R-Type/Entities/Projectile.h"
 #include "R-Type/Entities/Enemies/Patapata.h"
@@ -26,33 +28,26 @@ void EnemyManager::Draw() const
 	for (const auto& entity : m_Enemies)
 	{
 		entity->Draw();
+		//TextureManager::RenderBox(entity->GetPosition().x,entity->GetPosition().y,entity->GetSize().x,entity->GetSize().y, SDL_Color {0,0,255, 255});
 	}
 }
 
-const std::vector<std::unique_ptr<Entity>>& EnemyManager::GetEnemies()
+bool EnemyManager::CheckBulletCollision(const Projectile* bullet) const
 {
-	return m_Enemies;
-}
-
-bool EnemyManager::CheckBulletCollision(Projectile* bullet)
-{
-	for (auto& enemy : m_Enemies)
+	for (const auto& enemy : m_Enemies)
 	{
-		//We do a simple AABB
-		if(Collision::AABB(enemy->GetPosition(),enemy->GetSize(),bullet->GetPosition(),bullet->GetSize()))
+		if(Collision::AABB(bullet->GetPosition(),bullet->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 		{
 			enemy->SetCanDie();
 			return true;
 		}
-		return false;
 	}
-
 	return false;
 }
 
-void EnemyManager::CheckPlayerCollision(Player* player)
+void EnemyManager::CheckPlayerCollision(Player* player) const
 {
-	for (auto& enemy : m_Enemies)
+	for (const auto& enemy : m_Enemies)
 	{
 		if(Collision::AABB(player->GetPosition(),player->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 		{
