@@ -3,6 +3,7 @@
 #include "Core/Graphics/Renderer.h"
 
 #include <SDL_image.h>
+#include <SDL_pixels.h>
 
 SDL_Texture* TextureManager::CreateTexture(const char* texturePath)
 {
@@ -50,10 +51,10 @@ void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_Rect* sourceP
 	SDL_RenderCopy(Renderer::GetRenderer(), texture, sourcePos, position);
 }
 
-void TextureManager::RenderBox(const float posX, const float posY, const float width, const float height)
+void TextureManager::RenderBox(const float posX, const float posY, const float width, const float height, const SDL_Color color)
 {
-	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 255, 0, 0, 255);
-	SDL_FRect tempRect = SDL_FRect(posX, posY, width, height);
+	SDL_SetRenderDrawColor(Renderer::GetRenderer(), color.r,color.g,color.b,color.a);
+	const SDL_FRect tempRect = SDL_FRect {posX, posY, width, height};
 	SDL_RenderDrawRectF(Renderer::GetRenderer(), &tempRect);
 }
 

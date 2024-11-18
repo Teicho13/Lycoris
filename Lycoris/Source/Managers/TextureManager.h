@@ -4,6 +4,7 @@ struct SDL_Renderer;
 struct SDL_Texture;
 struct SDL_FRect;
 struct SDL_Rect;
+struct SDL_Color;
 
 class TextureManager
 {
@@ -18,6 +19,6 @@ public:
 	static void RenderTexture(SDL_Texture* texture, const SDL_Rect* position);
 	static void RenderTexture(SDL_Texture* texture, const SDL_Rect* sourcePos, const SDL_Rect* position);
 
-	static void RenderBox(const float posX, const float posY, const float width, const float height);
+	static void RenderBox(const float posX, const float posY, const float width, const float height, const SDL_Color color);
 	
 };
