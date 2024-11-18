@@ -36,10 +36,10 @@ bool EnemyManager::CheckBulletCollision(Projectile* bullet)
 	for (auto& enemy : m_Enemies)
 	{
 		//We do a simple AABB
-		if (enemy->GetPosX() + static_cast<float>(enemy->GetWidth()) >= bullet->GetPosX() &&
-			bullet->GetPosX() + static_cast<float>(bullet->GetWidth()) >= enemy->GetPosX() &&
-			enemy->GetPosY() + static_cast<float>(enemy->GetHeight()) >= bullet->GetPosY() &&
-			bullet->GetPosY() + static_cast<float>(bullet->GetHeight()) >= enemy->GetPosY())
+		if (enemy->GetPosition().x + static_cast<float>(enemy->GetSize().x) >= bullet->GetPosition().x &&
+			bullet->GetPosition().x + static_cast<float>(bullet->GetSize().x) >= enemy->GetPosition().x &&
+			enemy->GetPosition().y + static_cast<float>(enemy->GetSize().y) >= bullet->GetPosition().y &&
+			bullet->GetPosition().y + static_cast<float>(bullet->GetSize().y) >= enemy->GetPosition().y)
 		{
 			enemy->SetCanDie();
 			return true;

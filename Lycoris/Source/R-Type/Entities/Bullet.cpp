@@ -20,9 +20,9 @@ Bullet::Bullet(const char* texturePath, const int columns, const int rows, float
 
 void Bullet::Update(float deltaTime)
 {
-	SetPosX(GetPosX() + GetMoveSpeed() * deltaTime);
+	SetPosX(GetPosition().x + GetMoveSpeed() * deltaTime);
 
-	if(static_cast<int>(GetPosX()) + GetWidth() > AppConfig::Width)
+	if(static_cast<int>(GetPosition().x) + GetSize().x > AppConfig::Width)
 	{
 		m_CanRemove = true;
 	}

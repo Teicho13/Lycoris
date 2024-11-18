@@ -29,11 +29,11 @@ void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX
 {
 	for (auto& bullet : m_Projectiles)
 	{
-		int posX = (static_cast<int>(bullet->GetPosX() + offsetX)) / 64;
-		int posX2 = (static_cast<int>(bullet->GetPosX() + offsetX) + bullet->GetWidth()) / 64;
+		int posX = (static_cast<int>(bullet->GetPosition().x + offsetX)) / 64;
+		int posX2 = (static_cast<int>(bullet->GetPosition().x + offsetX) + bullet->GetSize().x) / 64;
 
-		int posY = static_cast<int>(bullet->GetPosY() / 64);
-		int posY2 = (static_cast<int>(bullet->GetPosY()) + bullet->GetHeight()) / 64;
+		int posY = static_cast<int>(bullet->GetPosition().y / 64);
+		int posY2 = (static_cast<int>(bullet->GetPosition().y) + bullet->GetSize().y) / 64;
 
 		if (posY2 > (Map::m_MapRows - 1))
 			posY2 = 11;
@@ -71,5 +71,5 @@ void ProjectileManager::ClearProjectiles()
 
 void ProjectileManager::AddBullet(Player* player)
 {
-	m_Projectiles.push_back(std::make_unique<Bullet>("Assets/Games/R-Type/Textures/Player/Bullet.png", 1, 1,player->GetPosX() + static_cast<float>(player->GetWidth()),player->GetPosY() + static_cast<float>(player->GetHeight()) / 2.f));
+	m_Projectiles.push_back(std::make_unique<Bullet>("Assets/Games/R-Type/Textures/Player/Bullet.png", 1, 1,player->GetPosition().x + static_cast<float>(player->GetSize().x),player->GetPosition().y + static_cast<float>(player->GetSize().y) / 2.f));
 }

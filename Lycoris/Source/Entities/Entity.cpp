@@ -10,10 +10,10 @@
 Entity::Entity(const char* texturePath)
 {
 	m_Sprite.reset(new Sprite(texturePath));
-	m_Width = m_Sprite->GetWidth();
-	m_Height = m_Sprite->GetHeight();
-	m_PosX = 0.f;
-	m_PosY = 0.f;
+	m_Size.x = m_Sprite->GetWidth();
+	m_Size.y = m_Sprite->GetHeight();
+	m_Position.x = 0.f;
+	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameDelay(100);
 }
@@ -21,10 +21,10 @@ Entity::Entity(const char* texturePath)
 Entity::Entity(const char* texturePath, const int columns, const int rows)
 {
 	m_Sprite.reset(new Sprite(texturePath,columns,rows));
-	m_Width = m_Sprite->GetWidth();
-	m_Height = m_Sprite->GetHeight();
-	m_PosX = 0.f;
-	m_PosY = 0.f;
+	m_Size.x = m_Sprite->GetWidth();
+	m_Size.y = m_Sprite->GetHeight();
+	m_Position.x = 0.f;
+	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameDelay(100);
 }
@@ -32,10 +32,10 @@ Entity::Entity(const char* texturePath, const int columns, const int rows)
 Entity::Entity(const char* texturePath, const int columns, const int rows, float posX, float posY)
 {
 	m_Sprite.reset(new Sprite(texturePath, columns, rows));
-	m_Width = m_Sprite->GetWidth();
-	m_Height = m_Sprite->GetHeight();
-	m_PosX = posX;
-	m_PosY = posY;
+	m_Size.x = m_Sprite->GetWidth();
+	m_Size.y = m_Sprite->GetHeight();
+	m_Position.x = posX;
+	m_Position.y = posY;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameDelay(100);
 }
@@ -45,7 +45,7 @@ void Entity::Draw() const
 	if(m_Sprite != nullptr)
 	{
 		//Create Variable for the position of the sprite
-		const SDL_FRect tempRec(m_PosX, m_PosY, static_cast<float>(m_Sprite->GetWidth()), static_cast<float>(m_Sprite->GetHeight()));
+		const SDL_FRect tempRec(m_Position.x, m_Position.y, static_cast<float>(m_Sprite->GetWidth()), static_cast<float>(m_Sprite->GetHeight()));
 
 		//Create temp variable to get the position / size that needs to be rendered
 		SDL_Rect tempSource;
@@ -55,24 +55,35 @@ void Entity::Draw() const
 	}
 }
 
-void Entity::SetPosX(float pos)
+void Entity::SetPosX(float posX)
 {
-	m_PosX = pos;
+	m_Position.x = posX;
 }
 
-void Entity::SetPosY(float pos)
+void Entity::SetPosY(float posY)
 {
-	m_PosY = pos;
+	m_Position.y = posY;
+}
+
+void Entity::SetSize(SDL_Point newSize)
+{
+	m_Size = newSize;
+}
+
+void Entity::SetSize(int w, int h)
+{
+	m_Size.x = w;
+	m_Size.y = h;
 }
 
 void Entity::SetWidth(int width)
 {
-	m_Width = width;
+	m_Size.x = width;
 }
 
 void Entity::SetHeight(int height)
 {
-	m_Height = height;
+	m_Size.y = height;
 }
 
 void Entity::SetCanDie()
@@ -94,39 +105,34 @@ bool Entity::ShouldRemove() const
 	return m_CanRemove;
 }
 
-bool Entity::IsOutBounds()
+bool Entity::IsOutBounds() const
 {
-	if(GetPosX() + static_cast<float>(GetWidth()) + 1.f <= 0.f)
+	if(GetPosition().x + static_cast<float>(GetSize().x) + 1.f <= 0.f)
 	{
 		return true;
 	}
 	return false;
 }
 
-float Entity::GetPosX() const
+void Entity::SetPosition(SDL_FPoint newPos)
 {
-	return m_PosX;
+	m_Position = newPos;
 }
 
-float Entity::GetPosY() const
+void Entity::SetPosition(float posX, float posY)
 {
-	return m_PosY;
+	m_Position.x = posX;
+	m_Position.y = posY;
 }
 
-void Entity::GetPosXY(float& posX, float& posY) const
+SDL_FPoint Entity::GetPosition() const
 {
-	posX = m_PosX;
-	posY = m_PosY;
+	return m_Position;
 }
 
-int Entity::GetWidth() const
+SDL_Point Entity::GetSize() const
 {
-	return m_Width;
-}
-
-int Entity::GetHeight() const
-{
-	return m_Height;
+	return m_Size;
 }
 
 void Entity::Animate()

@@ -34,6 +34,6 @@ void Patapata::Move(float dt)
 	float sine = (m_WaveFrequency * sinf(static_cast<float>(static_cast<double>(SDL_GetTicks()) * 0.5 * M_PI / m_WaveSpeed)) + m_StartY);
 	SetPosY(sine);
 
-	SetPosX(GetPosX() - (m_MoveSpeed * dt));
+	SetPosX(GetPosition().x - (m_MoveSpeed * dt));
 
 }

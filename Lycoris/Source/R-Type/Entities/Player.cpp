@@ -17,8 +17,8 @@
 Player::Player(const char* texturePath)
 	: Entity(texturePath)
 {
-	SetWidth(GetWidth() - 10);
-	SetHeight(GetHeight() - 10);
+	SetWidth(GetSize().x - 10);
+	SetHeight(GetSize().y - 10);
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
 	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
@@ -28,8 +28,8 @@ Player::Player(const char* texturePath)
 Player::Player(const char* texturePath, const int columns, const int rows)
 	: Entity(texturePath,columns,rows)
 {
-	SetWidth(GetWidth() - 10);
-	SetHeight(GetHeight() - 10);
+	SetWidth(GetSize().x - 10);
+	SetHeight(GetSize().y - 10);
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
 	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
@@ -68,8 +68,8 @@ void Player::Update(float deltaTime)
 	}
 	else
 	{
-		m_DieVFX->SetPosX(GetPosX());
-		m_DieVFX->SetPosY(GetPosY());
+		m_DieVFX->SetPosX(GetPosition().x);
+		m_DieVFX->SetPosY(GetPosition().y);
 		m_DieVFX->Update();
 	}
 	
@@ -81,11 +81,11 @@ bool Player::HandleTileCollision(Map& map) const
 		return false;
 
 
-	int posX = (static_cast<int>(GetPosX() + m_CamerRef->GetPosX())) / 64;
-	int posX2 = (static_cast<int>(GetPosX() + m_CamerRef->GetPosX()) + GetWidth()) / 64;
+	int posX = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX())) / 64;
+	int posX2 = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX()) + GetSize().x) / 64;
 
-	int posY = static_cast<int>(GetPosY() / 64);
-	int posY2 = (static_cast<int>(GetPosY()) + GetHeight()) / 64;
+	int posY = static_cast<int>(GetPosition().y / 64);
+	int posY2 = (static_cast<int>(GetPosition().y) + GetSize().y) / 64;
 
 	if (posY2 > (Map::m_MapRows - 1))
 		posY2 = 11;
@@ -112,48 +112,48 @@ void Player::HandleMovement(float dt)
 {
 	if(g_KeyStates[SDL_SCANCODE_A])
 	{
-		SetPosX(GetPosX() + -m_MoveSpeed * dt);
+		SetPosX(GetPosition().x + -m_MoveSpeed * dt);
 	}
 
 	if(g_KeyStates[SDL_SCANCODE_D])
 	{
-		SetPosX(GetPosX() + m_MoveSpeed * dt);
+		SetPosX(GetPosition().x + m_MoveSpeed * dt);
 	}
 
 	if(g_KeyStates[SDL_SCANCODE_W])
 	{
-		SetPosY(GetPosY() + -m_MoveSpeed * dt);
+		SetPosY(GetPosition().y + -m_MoveSpeed * dt);
 	}
 
 	if(g_KeyStates[SDL_SCANCODE_S])
 	{
-		SetPosY(GetPosY() + m_MoveSpeed * dt);
+		SetPosY(GetPosition().y + m_MoveSpeed * dt);
 	}
 
-	m_ChargeVFX->SetPosX(GetPosX() + static_cast<float>(GetWidth()) + m_ChargePosXOffset);
-	m_ChargeVFX->SetPosY((GetPosY() + static_cast<float>(GetHeight()) / 2) + m_ChargePosYOffset);
+	m_ChargeVFX->SetPosX(GetPosition().x + static_cast<float>(GetSize().x) + m_ChargePosXOffset);
+	m_ChargeVFX->SetPosY((GetPosition().y + static_cast<float>(GetSize().y) / 2) + m_ChargePosYOffset);
 }
 
 void Player::HandleBoundChecks()
 {
-	if(GetPosY() <= 0)
+	if(GetPosition().y <= 0)
 	{
 		SetPosY(0);
 	}
 
-	if(GetPosX() <= 0)
+	if(GetPosition().x <= 0)
 	{
 		SetPosX(0);
 	}
 
-	if(static_cast<int>(GetPosY()) + GetHeight() >= AppConfig::Height)
+	if(static_cast<int>(GetPosition().y) + GetSize().y >= AppConfig::Height)
 	{
-		SetPosY(static_cast<float>(AppConfig::Height - GetHeight()));
+		SetPosY(static_cast<float>(AppConfig::Height - GetSize().y));
 	}
 
-	if(static_cast<int>(GetPosX()) + GetWidth() >= AppConfig::Width)
+	if(static_cast<int>(GetPosition().x) + GetSize().x >= AppConfig::Width)
 	{
-		SetPosX(static_cast<float>(AppConfig::Width - GetWidth()));
+		SetPosX(static_cast<float>(AppConfig::Width - GetSize().x));
 	}
 }
 

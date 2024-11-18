@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <SDL_render.h>
 #include "Core/Animation.h"
 #include "Core/Sprite.h"
 
@@ -16,26 +17,26 @@ public:
 
 	virtual void Draw() const;
 	virtual void Update(float deltaTime) = 0;
-
-	void SetPosX(float pos);
-	void SetPosY(float pos);
-
-	void SetWidth(int width);
-	void SetHeight(int height);
-
+	
 	void SetCanDie();
 	void Die();
 
 	bool ShouldRemove() const;
 
-	bool IsOutBounds();
+	bool IsOutBounds() const;
 
-	float GetPosX() const;
-	float GetPosY() const;
-	void GetPosXY(float& posX, float& posY) const;
+	void SetPosition(SDL_FPoint newPos);
+	void SetPosition(float posX,float posY);
+	void SetPosX(float posX);
+	void SetPosY(float posY);
 
-	int GetWidth() const;
-	int GetHeight() const;
+	void SetSize(SDL_Point newSize);
+	void SetSize(int w, int h);
+	void SetWidth(int width);
+	void SetHeight(int height);
+	
+	SDL_FPoint GetPosition() const;
+	SDL_Point GetSize() const;
 
 	void Animate();
 	void SetFrameDelay(int delay);
@@ -49,10 +50,8 @@ public:
 private:
 	std::unique_ptr<Sprite> m_Sprite;
 
-	float m_PosX = 0.f;
-	float m_PosY = 0.f;
-	int m_Width = 0;
-	int m_Height = 0;
+	SDL_FPoint m_Position {0.f,0.f};
+	SDL_Point m_Size {0,0};
 
 	bool m_ShouldDie = false;
 	bool m_CanRemove = false;
