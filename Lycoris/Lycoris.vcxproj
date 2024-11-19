@@ -101,10 +101,10 @@
       <Optimization>Disabled</Optimization>
       <SupportJustMyCode>true</SupportJustMyCode>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</AssemblerListingLocation>
+      <AssemblerListingLocation>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</AssemblerListingLocation>
       <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
       <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</BrowseInformationFile>
+      <BrowseInformationFile>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</BrowseInformationFile>
       <CompileAs>Default</CompileAs>
       <ConformanceMode>true</ConformanceMode>
       <DiagnosticsFormat>Column</DiagnosticsFormat>
@@ -127,37 +127,37 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</ModuleDependenciesFile>
-      <ModuleOutputFile>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</ModuleOutputFile>
+      <ModuleDependenciesFile>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</ModuleDependenciesFile>
+      <ModuleOutputFile>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</ModuleOutputFile>
       <OmitDefaultLibName>false</OmitDefaultLibName>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <ObjectFileName>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</ObjectFileName>
+      <ObjectFileName>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</ObjectFileName>
       <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\vc143.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\vc143.pdb</ProgramDataBaseFileName>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\Lycoris.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\Lycoris.pch</PrecompiledHeaderOutputFile>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
       <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</SourceDependenciesFile>
+      <SourceDependenciesFile>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</SourceDependenciesFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <SpectreMitigation>false</SpectreMitigation>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <TrackerLogDirectory>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\Lycoris.tlog\</TrackerLogDirectory>
+      <TrackerLogDirectory>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\Lycoris.tlog\</TrackerLogDirectory>
       <TranslateIncludes>false</TranslateIncludes>
       <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
       <TreatWarningAsError>false</TreatWarningAsError>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <UseFullPaths>true</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>S:\GameDev\Projects\Custom\Lycoris\Lycoris\bin\int\Debug-x64\</XMLDocumentationFileName>
+      <XMLDocumentationFileName>$(ProjectDir)bin\int\$(Configuration)-$(Platform)\</XMLDocumentationFileName>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <IntelJCCErratum>false</IntelJCCErratum>
       <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
