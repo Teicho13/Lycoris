@@ -10,12 +10,18 @@ public:
 	float GetMoveSpeed() const;
 	void SetMoveSpeed(float newSpeed);
 
-	void SetCanDestroy();
+	void Explode() override;
 
+	int GetDamage() const;
+	bool IsPierce() const;
+	
+	void SetCanDestroy();
 	bool ShouldRemove() const;
 
 protected:
 	bool m_CanRemove = false;
+	bool m_Pierce = false;
+	int m_Damage = 1;
 private:
 	float m_MoveSpeed = 1000.f;
 	

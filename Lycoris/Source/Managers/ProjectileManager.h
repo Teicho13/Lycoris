@@ -21,7 +21,7 @@ public:
 	void ClearProjectiles();
 
 
-	void AddBullet(Player* player);
+	void AddBullet(Player* player, bool charged = false);
 
 private:
 	std::vector<std::unique_ptr<Projectile>> m_Projectiles;

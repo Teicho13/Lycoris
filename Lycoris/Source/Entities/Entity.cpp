@@ -110,8 +110,6 @@ void Entity::ChangeHealth(int amount)
 	if(m_Lives <= 0)
 	{
 		//If we run out of lives, we explode !
-		m_DieVFX->SetPosX(GetPosition().x);
-		m_DieVFX->SetPosY(GetPosition().y);
 		Explode();
 	}
 }
@@ -120,6 +118,8 @@ void Entity::Explode()
 {
 	m_IsExploding = true;
 	m_DieVFX->GetAnimation()->ResetAnimation();
+	m_DieVFX->SetPosX(GetPosition().x);
+	m_DieVFX->SetPosY(GetPosition().y);
 	m_DieVFX->GetAnimation()->Play();
 }
 

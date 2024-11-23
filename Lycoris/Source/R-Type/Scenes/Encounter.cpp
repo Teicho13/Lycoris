@@ -119,12 +119,11 @@ void Encounter::HandleEvents()
                     player->m_InputHeld = false;
                     if (!player->FullyCharged())
                     {
-                        //TODO: Replace with Charged Bullet type
                         g_ProjectileManager.AddBullet(player);
                     }
                     else
                     {
-                        g_ProjectileManager.AddBullet(player);
+                        g_ProjectileManager.AddBullet(player,true);
                     }
                 }
             }

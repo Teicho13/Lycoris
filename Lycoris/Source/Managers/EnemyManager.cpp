@@ -43,7 +43,7 @@ bool EnemyManager::CheckBulletCollision(const Projectile* bullet) const
 			//Check if bullet and enemy hit.
 			if(Collision::AABB(bullet->GetPosition(),bullet->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 			{
-				enemy->ChangeHealth(-1);
+				enemy->ChangeHealth(-bullet->GetDamage());
             	return true;
             }
 		}

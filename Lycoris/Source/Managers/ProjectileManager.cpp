@@ -27,6 +27,8 @@ void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX
 {
 	for (auto& bullet : m_Projectiles)
 	{
+		if(bullet->IsExploding()) { continue; }
+		
 		const int posX = (static_cast<int>(bullet->GetPosition().x + offsetX)) / 64;
 		const int posX2 = (static_cast<int>(bullet->GetPosition().x + offsetX) + bullet->GetSize().x) / 64;
 
@@ -38,7 +40,8 @@ void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX
 
 		if(map.HasTileCollision(posX, posX2, posY, posY2))
 		{
-			bullet->SetCanDestroy();
+			//bullet->SetCanDestroy();
+			bullet->Explode();
 		}
 	}
 }
@@ -52,7 +55,10 @@ void ProjectileManager::BulletEnemyCheck(const EnemyManager& enemyManager, const
 		if(enemyManager.CheckBulletCollision(projectile.get()))
 		{
 			//IF enemy is hit, destroy the bullet.
-			projectile->SetCanDestroy();
+			if(!projectile->IsPierce())
+			{
+				projectile->SetCanDestroy();
+			}
 		}
 	}
 }
@@ -71,7 +77,13 @@ void ProjectileManager::ClearProjectiles()
 	m_Projectiles.clear();
 }
 
-void ProjectileManager::AddBullet(Player* player)
+void ProjectileManager::AddBullet(Player* player, bool charged)
 {
-	m_Projectiles.push_back(std::make_unique<Bullet>("Assets/Games/R-Type/Textures/Player/Bullet.png", 1, 1,player->GetPosition().x + static_cast<float>(player->GetSize().x),player->GetPosition().y + static_cast<float>(player->GetSize().y) / 2.f));
+	if(!charged)
+	{
+		m_Projectiles.push_back(std::make_unique<Bullet>("Assets/Games/R-Type/Textures/Player/Bullet.png", 1, 1,player->GetPosition().x + static_cast<float>(player->GetSize().x),player->GetPosition().y + static_cast<float>(player->GetSize().y) / 2.f));
+	}else
+	{
+		m_Projectiles.push_back(std::make_unique<Bullet>("Assets/Games/R-Type/Textures/Player/BulletCharged.png", 2, 1,player->GetPosition().x + static_cast<float>(player->GetSize().x),player->GetPosition().y + static_cast<float>(player->GetSize().y) / 2.f, true));
+	}
 }

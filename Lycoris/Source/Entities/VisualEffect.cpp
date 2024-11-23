@@ -5,6 +5,7 @@
 
 #include "managers/TextureManager.h"
 #include "Core/Sprite.h"
+#include "R-Type/Entities/Bullet.h"
 #include "R-Type/Entities/Player.h"
 
 
@@ -41,6 +42,14 @@ void VisualEffect::Callback() const
 				player->Die();
 			}
 			return;
+		}
+
+		if(const auto bullet = dynamic_cast<Bullet*>(m_Entity))
+		{
+			if(bullet->IsExploding())
+			{
+				bullet->SetCanDestroy();
+			}
 		}
 
 		m_Entity->SetCanDie();

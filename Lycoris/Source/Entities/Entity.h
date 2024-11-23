@@ -23,7 +23,7 @@ public:
 	void Animate(float dt);
 	
 	void ChangeHealth(int amount);
-	void Explode();
+	virtual void Explode();
 	virtual void Die();
 	
 	//Setters
