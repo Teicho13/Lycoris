@@ -25,12 +25,8 @@ public:
 
 	void SetMovementSpeed(float amount);
 	float GetMovementSpeed() const;
-
-	void ChangeHealth(int amount);
 	
-	void Die();
-	void Explode();
-	bool IsExploding() const;
+	void Die() override;
 	bool IsAlive() const;
 
 	void ChargeBullet(float dt);
@@ -39,16 +35,13 @@ public:
 	bool m_InputHeld = false;
 
 private:
-	int m_Lives = 1;
 	bool m_IsAlive = true;
-	bool m_IsExploding = false;
 	float m_MoveSpeed = 500.f;
 
 	Camera* m_CamerRef = nullptr;
 
 	std::unique_ptr<VisualEffect> m_ChargeVFX = nullptr;
-	std::unique_ptr<VisualEffect> m_DieVFX = nullptr;
-
+	
 	bool m_Charged = false;
 	float m_Charge = 0;
 	float m_ChargeSpeed = 50;

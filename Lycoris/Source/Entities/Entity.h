@@ -3,6 +3,7 @@
 #include <SDL_render.h>
 #include "Core/Animation.h"
 #include "Core/Sprite.h"
+#include "Extras/VisualEffect.h"
 
 class Sprite;
 class Entity
@@ -17,9 +18,14 @@ public:
 
 	virtual void Draw() const;
 	virtual void Update(float deltaTime) = 0;
+
+	void ChangeHealth(int amount);
+	void Explode();
+	
+	bool IsExploding() const;
 	
 	void SetCanDie();
-	void Die();
+	virtual void Die();
 
 	bool ShouldRemove() const;
 
@@ -47,6 +53,10 @@ public:
 
 	Sprite* GetSprite() const;
 
+protected:
+	int m_Lives = 1;
+	bool m_IsExploding = false;
+	std::unique_ptr<VisualEffect> m_DieVFX = nullptr;
 private:
 	std::unique_ptr<Sprite> m_Sprite;
 

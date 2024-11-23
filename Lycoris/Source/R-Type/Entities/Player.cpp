@@ -21,7 +21,7 @@ Player::Player(const char* texturePath)
 	SetHeight(GetSize().y - 10);
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
-	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
+	m_DieVFX.reset(new VisualEffect("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this));
 	m_DieVFX->SetEntity(this);
 }
 
@@ -32,7 +32,7 @@ Player::Player(const char* texturePath, const int columns, const int rows)
 	SetHeight(GetSize().y - 10);
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
-	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
+	m_DieVFX.reset(new VisualEffect("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this));
 	m_DieVFX->SetEntity(this);
 }
 
@@ -47,15 +47,7 @@ Player::~Player()
 
 void Player::Draw() const
 {
-	if(!IsExploding())
-	{
-		Entity::Draw();
-	}
-	else
-	{
-		m_DieVFX->Draw();
-		return;
-	}
+	Entity::Draw();
 	if(m_InputHeld && m_Charge > 10.f)
 	{
 		m_ChargeVFX->Draw();
@@ -176,33 +168,9 @@ float Player::GetMovementSpeed() const
 	return m_MoveSpeed;
 }
 
-void Player::ChangeHealth(int amount)
-{
-	m_Lives += amount;
-
-	if(m_Lives <= 0)
-	{
-		m_DieVFX->SetPosX(GetPosition().x);
-		m_DieVFX->SetPosY(GetPosition().y);
-		Explode();
-	}
-}
-
 void Player::Die()
 {
 	m_IsAlive = false;
-}
-
-void Player::Explode()
-{
-	m_IsExploding = true;
-	m_DieVFX->GetAnimation()->ResetAnimation();
-	m_DieVFX->GetAnimation()->Play();
-}
-
-bool Player::IsExploding() const
-{
-	return m_IsExploding;
 }
 
 bool Player::IsAlive() const

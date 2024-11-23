@@ -36,22 +36,30 @@ bool EnemyManager::CheckBulletCollision(const Projectile* bullet) const
 {
 	for (const auto& enemy : m_Enemies)
 	{
-		if(Collision::AABB(bullet->GetPosition(),bullet->GetSize(),enemy->GetPosition(),enemy->GetSize()))
+		if(!enemy->IsExploding())
 		{
-			enemy->SetCanDie();
-			return true;
+			if(Collision::AABB(bullet->GetPosition(),bullet->GetSize(),enemy->GetPosition(),enemy->GetSize()))
+			{
+				enemy->ChangeHealth(-1);
+            	return true;
+            }
 		}
+		
 	}
 	return false;
 }
 
 void EnemyManager::CheckPlayerCollision(Player* player) const
 {
+	if(player->IsExploding())
+		return;
+	
 	for (const auto& enemy : m_Enemies)
 	{
 		if(Collision::AABB(player->GetPosition(),player->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 		{
-			enemy->SetCanDie();
+			//enemy->SetCanDie();
+			enemy->ChangeHealth(-1);
 			player->ChangeHealth(-1);
 		}
 	}

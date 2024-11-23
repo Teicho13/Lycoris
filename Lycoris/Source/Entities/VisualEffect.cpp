@@ -40,7 +40,10 @@ void VisualEffect::Callback() const
 			{
 				player->Die();
 			}
+			return;
 		}
+
+		m_Entity->SetCanDie();
 	}
 }
 

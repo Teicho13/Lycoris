@@ -6,7 +6,6 @@
 #include "Core/Sprite.h"
 #include "Managers/TextureManager.h"
 
-
 Entity::Entity(const char* texturePath)
 {
 	m_Sprite.reset(new Sprite(texturePath));
@@ -16,6 +15,8 @@ Entity::Entity(const char* texturePath)
 	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameSpeed(8);
+	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Enemies/Explosion.png", 6, 1, 50.f, 50.f, false,false,this);
+	m_DieVFX->SetEntity(this);
 }
 
 Entity::Entity(const char* texturePath, const int columns, const int rows)
@@ -27,6 +28,8 @@ Entity::Entity(const char* texturePath, const int columns, const int rows)
 	m_Position.y = 0.f;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameSpeed(8);
+	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Enemies/Explosion.png", 6, 1, 50.f, 50.f, false,false,this);
+	m_DieVFX->SetEntity(this);
 }
 
 Entity::Entity(const char* texturePath, const int columns, const int rows, float posX, float posY)
@@ -38,21 +41,34 @@ Entity::Entity(const char* texturePath, const int columns, const int rows, float
 	m_Position.y = posY;
 	m_Animation.Initialize(m_Sprite->GetFrames());
 	m_Animation.SetFrameSpeed(8);
+	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Enemies/Explosion.png", 6, 1, 50.f, 50.f, false,false,this);
+	m_DieVFX->SetEntity(this);
 }
 
 void Entity::Draw() const
 {
-	if(m_Sprite != nullptr)
+	if(!IsExploding())
 	{
-		//Create Variable for the position of the sprite
-		const SDL_FRect tempRec(m_Position.x, m_Position.y, static_cast<float>(m_Sprite->GetWidth()), static_cast<float>(m_Sprite->GetHeight()));
-
-		//Create temp variable to get the position / size that needs to be rendered
-		SDL_Rect tempSource;
-		m_Sprite->GetSourceRec(tempSource);
-
-		TextureManager::RenderTexture(m_Sprite->GetTexture(), &tempSource, &tempRec);
+		if(m_Sprite != nullptr)
+		{
+        	//Create Variable for the position of the sprite
+        	const SDL_FRect tempRec(m_Position.x, m_Position.y, static_cast<float>(m_Sprite->GetWidth()), static_cast<float>(m_Sprite->GetHeight()));
+        
+        	//Create temp variable to get the position / size that needs to be rendered
+        	SDL_Rect tempSource;
+        	m_Sprite->GetSourceRec(tempSource);
+        
+        	TextureManager::RenderTexture(m_Sprite->GetTexture(), &tempSource, &tempRec);
+        }
 	}
+	else
+	{
+		if(m_DieVFX != nullptr)
+		{
+			m_DieVFX->Draw();
+		}
+	}
+
 }
 
 void Entity::SetPosX(float posX)
@@ -84,6 +100,30 @@ void Entity::SetWidth(int width)
 void Entity::SetHeight(int height)
 {
 	m_Size.y = height;
+}
+
+void Entity::ChangeHealth(int amount)
+{
+	m_Lives += amount;
+
+	if(m_Lives <= 0)
+	{
+		m_DieVFX->SetPosX(GetPosition().x);
+		m_DieVFX->SetPosY(GetPosition().y);
+		Explode();
+	}
+}
+
+void Entity::Explode()
+{
+	m_IsExploding = true;
+	m_DieVFX->GetAnimation()->ResetAnimation();
+	m_DieVFX->GetAnimation()->Play();
+}
+
+bool Entity::IsExploding() const
+{
+	return m_IsExploding;
 }
 
 void Entity::SetCanDie()

@@ -20,6 +20,14 @@ Patapata::Patapata(const char* texturePath, const int columns, const int rows, f
 
 void Patapata::Update(float deltaTime)
 {
+	if(IsExploding())
+	{
+		m_DieVFX->SetPosX(GetPosition().x);
+		m_DieVFX->SetPosY(GetPosition().y);
+		m_DieVFX->Update(deltaTime);
+		return;
+	}
+	
 	Move(deltaTime);
 	Animate(deltaTime);
 	if(IsOutBounds())
