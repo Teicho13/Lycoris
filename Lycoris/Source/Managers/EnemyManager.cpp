@@ -14,6 +14,7 @@ void EnemyManager::Update(float deltaTime)
 	{
 		if (m_Enemies[i]->ShouldRemove())
 		{
+			//Remove enemy and go back one iteration to continue normally. 
 			m_Enemies.erase(m_Enemies.begin() + i);
 			i--;
 			continue;
@@ -36,8 +37,10 @@ bool EnemyManager::CheckBulletCollision(const Projectile* bullet) const
 {
 	for (const auto& enemy : m_Enemies)
 	{
+		//Check if enemy is not already exploding.
 		if(!enemy->IsExploding())
 		{
+			//Check if bullet and enemy hit.
 			if(Collision::AABB(bullet->GetPosition(),bullet->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 			{
 				enemy->ChangeHealth(-1);
@@ -51,14 +54,17 @@ bool EnemyManager::CheckBulletCollision(const Projectile* bullet) const
 
 void EnemyManager::CheckPlayerCollision(Player* player) const
 {
+	//Check if the player is not already dying.
 	if(player->IsExploding())
 		return;
 	
 	for (const auto& enemy : m_Enemies)
 	{
+		//Skip over enemy if its already exploding.
+		if(enemy->IsExploding()){ continue; }
+		
 		if(Collision::AABB(player->GetPosition(),player->GetSize(),enemy->GetPosition(),enemy->GetSize()))
 		{
-			//enemy->SetCanDie();
 			enemy->ChangeHealth(-1);
 			player->ChangeHealth(-1);
 		}

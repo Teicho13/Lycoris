@@ -102,12 +102,14 @@ void Entity::SetHeight(int height)
 	m_Size.y = height;
 }
 
+//Change the amount of lives for a entity by increasing it by "amount".
 void Entity::ChangeHealth(int amount)
 {
 	m_Lives += amount;
 
 	if(m_Lives <= 0)
 	{
+		//If we run out of lives, we explode !
 		m_DieVFX->SetPosX(GetPosition().x);
 		m_DieVFX->SetPosY(GetPosition().y);
 		Explode();
@@ -129,9 +131,6 @@ bool Entity::IsExploding() const
 void Entity::SetCanDie()
 {
 	m_ShouldDie = true;
-
-	//Do Animation here first
-
 	Die();
 }
 
@@ -192,17 +191,6 @@ void Entity::SetFrameSpeed(float delay)
 Animation& Entity::GetAnimationComponent()
 {
 	return m_Animation;
-}
-
-bool Entity::GetIsAnimated() const
-{
-	return m_IsAnimated;
-}
-
-//Returns delay between each frame in ms
-int Entity::GetFrameDelay() const
-{
-	return m_FrameDelay;
 }
 
 Sprite* Entity::GetSprite() const

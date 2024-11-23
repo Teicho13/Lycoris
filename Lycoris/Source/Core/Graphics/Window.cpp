@@ -7,7 +7,7 @@ bool Window::Create()
 {
     std::cout << "Creating Window \n";
     
-    constexpr auto windowFlag = (AppConfig::Fullscreen) ? SDL_WINDOW_FULLSCREEN : (SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    constexpr auto windowFlag = (AppConfig::Fullscreen) ? SDL_WINDOW_FULLSCREEN : (SDL_WINDOW_SHOWN);
 
     m_Window = SDL_CreateWindow(AppConfig::Title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, AppConfig::Width, AppConfig::Height, windowFlag);
 

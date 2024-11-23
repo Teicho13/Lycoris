@@ -10,16 +10,15 @@ class VisualEffect
 public:
 	VisualEffect(const char* texturePath, const int columns, const int rows, float posX, float posY, bool looping, bool startOn = true, Entity* entity = nullptr);
 	void Callback() const;
-	void Draw();
+	void Draw() const;
 	void Update(const float dt);
 
+	void SetEntity(Entity* entity);
 	void SetPosX(float newX);
 	void SetPosY(float newY);
 
 	Sprite* GetSprite() const;
 	Animation* GetAnimation();
-
-	void SetEntity(Entity* entity);
 
 private:
 	Animation m_Animation;

@@ -122,13 +122,15 @@ void Map::CreateEnemies(const char* EnemyMapPath, EnemyManager& enemyManager)
 				enemyManager.AddEntity(m_EnemyType::PataPata,itX,itY);
 				break;
 		}
-
+		
 		if (itX < (m_MapColumns - 1))
 		{
 			itX++;
 		}
 		else
 		{
+			//Move to the next column
+			
 			itX = 0;
 			if (itY < m_MapRows)
 			{
@@ -136,6 +138,7 @@ void Map::CreateEnemies(const char* EnemyMapPath, EnemyManager& enemyManager)
 			}
 		}
 
+		//We ignore commas
 		if ((str_buf >> std::ws).peek() == ',')
 			str_buf.ignore();
 	}
@@ -152,9 +155,9 @@ void Map::DrawMap(Camera& cam) const
 	{
 		for (int j = 0; j < m_MapColumns; ++j)
 		{
-			int id = m_MapTiles[i][j]->GetID();
-			float posX = (static_cast<float>(m_MapSheet->GetWidth() * j)) - cam.GetPosX();
-			float PosY = static_cast<float>(m_MapSheet->GetHeight() * i) - cam.GetPosY();
+			const int id = m_MapTiles[i][j]->GetID();
+			const float posX = (static_cast<float>(m_MapSheet->GetWidth() * j)) - cam.GetPosX();
+			const float PosY = static_cast<float>(m_MapSheet->GetHeight() * i) - cam.GetPosY();
 			RenderSprite(id,posX,PosY);
 		}
 	}

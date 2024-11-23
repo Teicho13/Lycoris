@@ -7,8 +7,6 @@ struct Animation
 	void Initialize(int maxFrame, VisualEffect* vfx = nullptr);
 
 	void SetLooped(bool val);
-
-	//Set Delay between each frame (in ms)
 	void SetFrameSpeed(float val);
 
 	void Play();

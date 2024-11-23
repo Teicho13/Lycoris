@@ -10,26 +10,25 @@ class Entity
 {
 public:
 
+	//Constructs & destructor
+	
 	Entity(const char* texturePath);
 	Entity(const char* texturePath, const int columns, const int rows);
 	Entity(const char* texturePath, const int columns, const int rows, float posX, float posY);
-
 	virtual ~Entity() = default;
+
 
 	virtual void Draw() const;
 	virtual void Update(float deltaTime) = 0;
-
+	void Animate(float dt);
+	
 	void ChangeHealth(int amount);
 	void Explode();
-	
-	bool IsExploding() const;
-	
-	void SetCanDie();
 	virtual void Die();
+	
+	//Setters
 
-	bool ShouldRemove() const;
-
-	bool IsOutBounds() const;
+	void SetCanDie();
 
 	void SetPosition(SDL_FPoint newPos);
 	void SetPosition(float posX,float posY);
@@ -40,23 +39,27 @@ public:
 	void SetSize(int w, int h);
 	void SetWidth(int width);
 	void SetHeight(int height);
+
+	void SetFrameSpeed(float delay);
+
+	//Getters
 	
 	SDL_FPoint GetPosition() const;
 	SDL_Point GetSize() const;
 
-	void Animate(float dt);
-	void SetFrameSpeed(float delay);
-	Animation& GetAnimationComponent();
-
-	bool GetIsAnimated() const;
-	int GetFrameDelay() const;
-
+	bool IsExploding() const;
+	
+	bool ShouldRemove() const;
+	bool IsOutBounds() const;
+	
 	Sprite* GetSprite() const;
+	Animation& GetAnimationComponent();
 
 protected:
 	int m_Lives = 1;
 	bool m_IsExploding = false;
 	std::unique_ptr<VisualEffect> m_DieVFX = nullptr;
+	
 private:
 	std::unique_ptr<Sprite> m_Sprite;
 
@@ -67,8 +70,6 @@ private:
 	bool m_CanRemove = false;
 
 	bool m_IsAnimated = false;
-	//Delay in ms
-	int m_FrameDelay = 100;
-
+	
 	Animation m_Animation;
 };

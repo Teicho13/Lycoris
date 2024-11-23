@@ -17,6 +17,7 @@ public:
 	void Update(float deltaTime) override;
 	bool HandleTileCollision(Map& map) const;
 
+	//Camera component
 	void SetCamera(Camera* camera);
 	Camera* GetCamera(Camera* camera) const;
 

@@ -27,6 +27,7 @@ void Engine::Run()
 
 	while(sceneManager.IsRunning())
 	{
+		//Calculate new delta time and check for any event updates
 		dt.Update();
 		HandleEvents();
 		
@@ -64,7 +65,8 @@ bool Engine::Init()
 	
 	//Pointer to keyboard button states
 	g_KeyStates = SDL_GetKeyboardState(nullptr);
-	
+
+	//We change to initialize the first scene
 	sceneManager.ChangeScene(std::make_unique<Encounter>());
 	sceneManager.Start();
 

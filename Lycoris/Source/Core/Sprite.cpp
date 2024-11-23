@@ -114,6 +114,7 @@ void Sprite::CalculateSizeAndFrames(int columns, int rows)
 	if (rows <= 0)
 		rows = 1;
 
+	//Calculate the size of each frame
 	m_SpriteWidth = m_SpriteWidth / columns;
 	m_SpriteHeight = m_SpriteHeight / rows;
 

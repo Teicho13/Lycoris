@@ -47,7 +47,7 @@ void VisualEffect::Callback() const
 	}
 }
 
-void VisualEffect::Draw()
+void VisualEffect::Draw() const
 {
 	if (m_Sprite != nullptr)
 	{

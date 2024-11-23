@@ -22,14 +22,15 @@ void ProjectileManager::Update(float deltaTime)
 	}
 }
 
+//Check if the bullet is out of bounds or hits a tile.
 void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX) const
 {
 	for (auto& bullet : m_Projectiles)
 	{
-		int posX = (static_cast<int>(bullet->GetPosition().x + offsetX)) / 64;
-		int posX2 = (static_cast<int>(bullet->GetPosition().x + offsetX) + bullet->GetSize().x) / 64;
+		const int posX = (static_cast<int>(bullet->GetPosition().x + offsetX)) / 64;
+		const int posX2 = (static_cast<int>(bullet->GetPosition().x + offsetX) + bullet->GetSize().x) / 64;
 
-		int posY = static_cast<int>(bullet->GetPosition().y / 64);
+		const int posY = static_cast<int>(bullet->GetPosition().y / 64);
 		int posY2 = (static_cast<int>(bullet->GetPosition().y) + bullet->GetSize().y) / 64;
 
 		if (posY2 > (Map::m_MapRows - 1))
@@ -42,12 +43,15 @@ void ProjectileManager::BulletCollisionCheck(const Map& map, const float offsetX
 	}
 }
 
+//Check collision between enemies and bullets
 void ProjectileManager::BulletEnemyCheck(const EnemyManager& enemyManager, const float offsetX) const
 {
+	//For each projectile check if there is collision between it and the enemies
 	for (auto& projectile : m_Projectiles)
 	{
 		if(enemyManager.CheckBulletCollision(projectile.get()))
 		{
+			//IF enemy is hit, destroy the bullet.
 			projectile->SetCanDestroy();
 		}
 	}

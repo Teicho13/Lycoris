@@ -8,7 +8,7 @@ void Animation::Initialize(int maxFrame, VisualEffect* vfx) { if (maxFrame <= 0)
 
 void Animation::SetLooped(bool val) { m_LoopAnimation = val; }
 
-
+//Set how fast we count up towards the next frame (FrameSpeed * DT)
 void Animation::SetFrameSpeed(float val) { m_FrameSpeed = val; }
 
 void Animation::Play() { m_IsPlaying = true; }
@@ -20,7 +20,6 @@ void Animation::Update(const float dt)
 	if(m_IsPlaying)
 	{
 		m_time += m_FrameSpeed * dt;
-		std::cout << m_time << "\n";
 		if(m_time >= 1)
 		{
 			m_CurrentFrame++;

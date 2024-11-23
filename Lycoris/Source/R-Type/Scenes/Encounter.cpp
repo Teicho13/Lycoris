@@ -30,11 +30,13 @@ void Encounter::Init()
     g_EncounterMap.SetMapSheet("./Assets/Games/R-Type/MapData/Level01.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64.png", 22, 20);
     g_EncounterMap.CreateEnemies("./Assets/Games/R-Type/MapData/Enemies01.csv", g_EnemyManager);
 
+    //Set all references for needed collisions
     g_CollisionManager.SetReferences(&g_ProjectileManager,&g_EnemyManager,player,&g_EncounterMap,&camera);
 }
 
 void Encounter::Tick(float dt)
 {
+    //If the player died we reset the level for now.
     if(!player->IsAlive())
     {
         SDL_Delay(500);
@@ -44,6 +46,7 @@ void Encounter::Tick(float dt)
     
     player->Update(dt);
     
+    //If we are not exploding, Check collisions with the map and move the camera
     if(!player->IsExploding())
     {
         if(player->HandleTileCollision(g_EncounterMap))
@@ -51,12 +54,9 @@ void Encounter::Tick(float dt)
             player->ChangeHealth(-1);
             return;
         }
-
         camera.MoveCamera(dt);
     }
-	
-	
-
+    
     g_CollisionManager.UpdateCollisions();
     g_ProjectileManager.Update(dt);
     g_EnemyManager.Update(dt);
@@ -130,6 +130,5 @@ void Encounter::HandleEvents()
             }
             break;
         }
-		
     }
 }

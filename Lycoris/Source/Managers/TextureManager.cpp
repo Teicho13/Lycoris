@@ -7,8 +7,7 @@
 
 SDL_Texture* TextureManager::CreateTexture(const char* texturePath)
 {
-	//Create texture
-	SDL_Surface* surface = ResourceManager::GetInstance().GetSurface(texturePath);
+	//Look if texture already exists otherwise create a new one.
 	SDL_Texture* TempTexture = ResourceManager::GetInstance().GetTexture(texturePath);
 
 	return TempTexture;
@@ -16,7 +15,8 @@ SDL_Texture* TextureManager::CreateTexture(const char* texturePath)
 
 SDL_Texture* TextureManager::CreateTexture(const char* texturePath, int& imageWidth, int& imageHeight)
 {
-	//Create texture
+	//Look if texture already exists otherwise create a new one.
+	
 	SDL_Surface* surface = ResourceManager::GetInstance().GetSurface(texturePath);
 	SDL_Texture* TempTexture = ResourceManager::GetInstance().GetTexture(texturePath);
 
@@ -51,6 +51,7 @@ void TextureManager::RenderTexture(SDL_Texture* texture, const SDL_Rect* sourceP
 	SDL_RenderCopy(Renderer::GetRenderer(), texture, sourcePos, position);
 }
 
+//Debug draw a box in a specified color
 void TextureManager::RenderBox(const float posX, const float posY, const float width, const float height, const SDL_Color color)
 {
 	SDL_SetRenderDrawColor(Renderer::GetRenderer(), color.r,color.g,color.b,color.a);
