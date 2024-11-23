@@ -22,7 +22,7 @@ Player::Player(const char* texturePath)
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
 	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
-	m_DieVFX->SetPlayer(this);
+	m_DieVFX->SetEntity(this);
 }
 
 Player::Player(const char* texturePath, const int columns, const int rows)
@@ -33,7 +33,7 @@ Player::Player(const char* texturePath, const int columns, const int rows)
 
 	m_ChargeVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/Charging.png", 8, 1, 50.f, 50.f, true);
 	m_DieVFX = std::make_unique<VisualEffect>("Assets/Games/R-Type/Textures/Player/PlayerExplosion.png", 8, 1, 50.f, 50.f, false,false,this);
-	m_DieVFX->SetPlayer(this);
+	m_DieVFX->SetEntity(this);
 }
 
 Player::~Player()
