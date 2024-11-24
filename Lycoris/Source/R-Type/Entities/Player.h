@@ -17,6 +17,8 @@ public:
 	void Update(float deltaTime) override;
 	bool HandleTileCollision(Map& map) const;
 
+	void SteerShip(float dt);
+
 	//Camera component
 	void SetCamera(Camera* camera);
 	Camera* GetCamera(Camera* camera) const;
@@ -42,10 +44,18 @@ private:
 	Camera* m_CamerRef = nullptr;
 
 	std::unique_ptr<VisualEffect> m_ChargeVFX = nullptr;
+
+	//Charged bullets
 	
 	bool m_Charged = false;
 	float m_Charge = 0;
 	float m_ChargeSpeed = 50;
 	float m_ChargePosXOffset = 10.f;
 	float m_ChargePosYOffset = -5.f;
+
+	//Flight steering animation
+	
+	int SteerDirection = 0;
+	float SteerCurrentVal = 0.f;
+	float SteerThreshold = 1.f;
 };

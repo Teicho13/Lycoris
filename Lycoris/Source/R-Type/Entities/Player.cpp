@@ -65,6 +65,8 @@ void Player::Update(float deltaTime)
 		{
 			m_ChargeVFX->Update(deltaTime);
 		}
+
+		SteerShip(deltaTime);
 	}
 	else
 	{
@@ -101,6 +103,48 @@ bool Player::HandleTileCollision(Map& map) const
 	return false;
 }
 
+//Change player animation based on the direction the player is moving.
+void Player::SteerShip(float dt)
+{
+	//Increment over time
+	SteerCurrentVal += (6 * dt);
+
+	if(SteerCurrentVal >= SteerThreshold)
+	{
+		//Reset Value for next animation frame
+		SteerCurrentVal = 0;
+
+		//Check if we are either moving up/down or neither (reset position to center)
+		switch (SteerDirection)
+		{
+		case 1 :
+			if(GetSprite()->GetCurrentFrame() < GetSprite()->GetFrames())
+			{
+				GetSprite()->SetFrame(GetSprite()->GetCurrentFrame() + 1);
+			}
+			break;
+			
+		case -1:
+			if(GetSprite()->GetCurrentFrame() > 0)
+			{
+				GetSprite()->SetFrame(GetSprite()->GetCurrentFrame() - 1);
+			}
+			break;
+
+		default:
+			if(GetSprite()->GetCurrentFrame() > 2)
+			{
+				GetSprite()->SetFrame(GetSprite()->GetCurrentFrame() - 1);
+			}
+			if(GetSprite()->GetCurrentFrame() < 2)
+			{
+				GetSprite()->SetFrame(GetSprite()->GetCurrentFrame() + 1);
+			}
+			break;
+		}
+	}
+}
+
 void Player::SetCamera(Camera* camera)
 {
 	m_CamerRef = camera;
@@ -113,6 +157,8 @@ Camera* Player::GetCamera(Camera* camera) const
 
 void Player::HandleMovement(float dt)
 {
+	SteerDirection = 0;
+	
 	if(g_KeyStates[SDL_SCANCODE_A])
 	{
 		SetPosX(GetPosition().x + -m_MoveSpeed * dt);
@@ -126,11 +172,13 @@ void Player::HandleMovement(float dt)
 	if(g_KeyStates[SDL_SCANCODE_W])
 	{
 		SetPosY(GetPosition().y + -m_MoveSpeed * dt);
+		SteerDirection = 1;
 	}
 
 	if(g_KeyStates[SDL_SCANCODE_S])
 	{
 		SetPosY(GetPosition().y + m_MoveSpeed * dt);
+		SteerDirection = -1;
 	}
 
 	m_ChargeVFX->SetPosX(GetPosition().x + static_cast<float>(GetSize().x) + m_ChargePosXOffset);
