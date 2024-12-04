@@ -27,8 +27,8 @@ public:
 	bool HasTileCollision(int posX, int posX2, int posY, int posY2) const;
 	Tile* GetTile(int row, int column) const;
 
-	static constexpr int m_MapRows = 12;
-	static constexpr int m_MapColumns = 268;
+	static constexpr int m_MapRows = 24;
+	static constexpr int m_MapColumns = 539;
 private:
 
 	void RenderSprite(int frameID, float posX, float posY) const;

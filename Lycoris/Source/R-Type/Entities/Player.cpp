@@ -85,11 +85,11 @@ bool Player::HandleTileCollision(Map& map) const
 
 	//Check overlapping tiles
 	
-	const int posX = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX())) / 64;
-	const int posX2 = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX()) + GetSize().x) / 64;
+	const int posX = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX())) / AppConfig::TileSize;
+	const int posX2 = (static_cast<int>(GetPosition().x + m_CamerRef->GetPosX()) + GetSize().x) / AppConfig::TileSize;
 
-	const int posY = static_cast<int>(GetPosition().y / 64);
-	int posY2 = (static_cast<int>(GetPosition().y) + GetSize().y) / 64;
+	const int posY = static_cast<int>(GetPosition().y / AppConfig::TileSize);
+	int posY2 = (static_cast<int>(GetPosition().y) + GetSize().y) / AppConfig::TileSize;
 
 	if (posY2 > (Map::m_MapRows - 1))
 		posY2 = 11;
