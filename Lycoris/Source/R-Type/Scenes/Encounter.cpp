@@ -7,12 +7,16 @@
 #include "Managers/ProjectileManager.h"
 
 #include "R-Type/Entities/Player.h"
+#include "R-Type/Extras/Star.h"
 #include "R-Type/Map/Camera.h"
 #include "R-Type/Map/Map.h"
 
 
 Player* player;
 Camera camera;
+
+//Background decoration
+Star *g_Stars[50];
 
 Map g_EncounterMap;
 EnemyManager g_EnemyManager;
@@ -32,6 +36,12 @@ void Encounter::Init()
 
     //Set all references for needed collisions
     g_CollisionManager.SetReferences(&g_ProjectileManager,&g_EnemyManager,player,&g_EncounterMap,&camera);
+
+    //Create a couple background stars
+    for (auto& star : g_Stars)
+    {
+        star = new Star();
+    }
 }
 
 void Encounter::Tick(float dt)
@@ -45,6 +55,10 @@ void Encounter::Tick(float dt)
     }
     
     player->Update(dt);
+    for (auto star : g_Stars)
+    {
+        star->Update(dt);
+    }
     
     //If we are not exploding, Check collisions with the map and move the camera
     if(!player->IsExploding())
@@ -68,6 +82,10 @@ void Encounter::Render()
     player->Draw();
     g_ProjectileManager.Draw();
     g_EnemyManager.Draw();
+    for (auto star : g_Stars)
+    {
+        star->Draw();
+    }
 }
 
 void Encounter::Destroy()
@@ -77,6 +95,12 @@ void Encounter::Destroy()
     g_ProjectileManager.ClearProjectiles();
     camera.ResetPosition();
     delete player;
+
+    //Reverse for loop to destroy all stars
+    for (int i = 50 - 1; i >= 0; --i)
+    {
+        delete g_Stars[i];
+    }
 }
 
 void Encounter::HandleEvents()

@@ -180,6 +180,7 @@
     <ClCompile Include="Source\R-Type\Entities\Enemies\Patapata.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Player.cpp" />
     <ClCompile Include="Source\R-Type\Entities\Projectile.cpp" />
+    <ClCompile Include="Source\R-Type\Extras\Star.cpp" />
     <ClCompile Include="Source\R-Type\Map\Camera.cpp" />
     <ClCompile Include="Source\R-Type\Map\Map.cpp" />
     <ClCompile Include="Source\R-Type\Map\Tile.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Source\R-Type\Entities\Enemies\Patapata.h" />
     <ClInclude Include="Source\R-Type\Entities\Player.h" />
     <ClInclude Include="Source\R-Type\Entities\Projectile.h" />
+    <ClInclude Include="Source\R-Type\Extras\Star.h" />
     <ClInclude Include="Source\R-Type\Map\Camera.h" />
     <ClInclude Include="Source\R-Type\Map\Map.h" />
     <ClInclude Include="Source\R-Type\Map\Tile.h" />
