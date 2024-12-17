@@ -1,4 +1,4 @@
-#include "Extras/VisualEffect.h"
+#include "VisualEffect.h"
 
 #include <SDL_rect.h>
 #include <iostream>

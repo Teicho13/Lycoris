@@ -1,10 +1,13 @@
 ﻿#include <SDL_events.h>
 #include "Encounter.h"
 
+#include "Core/UI.h"
+#include "Core/Utility/AppConfig.h"
 #include "Managers/CollisionManager.h"
 #include "Managers/SceneManager.h"
 #include "Managers/EnemyManager.h"
 #include "Managers/ProjectileManager.h"
+#include "managers/TextureManager.h"
 
 #include "R-Type/Entities/Player.h"
 #include "R-Type/Extras/Star.h"
@@ -22,6 +25,8 @@ Map g_EncounterMap;
 EnemyManager g_EnemyManager;
 ProjectileManager g_ProjectileManager;
 CollisionManager g_CollisionManager;
+
+UI* g_BeamBar;
 
 void Encounter::Init()
 {
@@ -42,6 +47,8 @@ void Encounter::Init()
     {
         star = new Star();
     }
+
+    g_BeamBar = new UI("./Assets/Games/R-Type/Textures/UI/BeamBar.png",(AppConfig::Width / 2) - 288,AppConfig::Height - 24);
 }
 
 void Encounter::Tick(float dt)
@@ -85,6 +92,15 @@ void Encounter::Render()
     for (auto star : g_Stars)
     {
         star->Draw();
+    }
+
+    if(g_BeamBar != nullptr)
+    {
+        g_BeamBar->Draw();
+        if(player->DisplayCharge())
+        {
+            TextureManager::RenderBoxFilled(g_BeamBar->GetPosition().x + 24, g_BeamBar->GetPosition().y + 3,(player->GetCurrentCharge() * 5.28f),18,SDL_Color{64,62,186,255});
+        }
     }
 }
 

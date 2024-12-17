@@ -243,19 +243,37 @@ void Player::ChargeBullet(float dt)
 			}
 		}
 	}
-	else
+	if(!m_InputHeld && m_Charged)
 	{
-		if(m_Charged || m_Charge > 0.f)
+		m_Charge = 0.f;
+		m_Charged = false;
+	}
+
+	if(!m_InputHeld && !m_Charged)
+	{
+		if(m_Charge >= 0.f)
 		{
-			m_Charge = 0.f;
-			m_Charged = false;
-			std::cout << "Charge Reset !" << "\n";
+			m_Charge -= (m_ChargeSpeed * dt);	
 		}
-		m_ChargeVFX->GetAnimation()->ResetAnimation();
 	}
 }
 
 bool Player::FullyCharged() const
 {
 	return m_Charged;
+}
+
+bool Player::DisplayCharge() const
+{
+	if(m_Charge >= 10.f)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+float Player::GetCurrentCharge() const
+{
+	return m_Charge;
 }

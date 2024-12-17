@@ -34,6 +34,8 @@ public:
 
 	void ChargeBullet(float dt);
 	bool FullyCharged() const;
+	bool DisplayCharge() const;
+	float GetCurrentCharge() const;
 
 	bool m_InputHeld = false;
 

@@ -20,5 +20,6 @@ public:
 	static void RenderTexture(SDL_Texture* texture, const SDL_Rect* sourcePos, const SDL_Rect* position);
 
 	static void RenderBox(const float posX, const float posY, const float width, const float height, const SDL_Color color);
+	static void RenderBoxFilled(const float posX, const float posY, const float width, const float height, const SDL_Color color);
 	
 };
