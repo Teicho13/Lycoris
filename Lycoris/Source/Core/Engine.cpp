@@ -92,7 +92,8 @@ void Engine::Render()
 	if (!sceneManager.IsRunning()) return;
 
 	//Clear render screen for new frame
-	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 27, 146, 214, 255);
+	//SDL_SetRenderDrawColor(Renderer::GetRenderer(), 27, 146, 214, 255);
+	SDL_SetRenderDrawColor(Renderer::GetRenderer(), 0, 0, 0, 255);
 	SDL_RenderClear(Renderer::GetRenderer());
 
 	//<-- Render Game Objects here -->

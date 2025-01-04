@@ -36,7 +36,7 @@ void Encounter::Init()
     player->GetSprite()->SetFrame(2);
 
     //Create Map and Set enemies
-    g_EncounterMap.SetMapSheet("./Assets/Games/R-Type/MapData/Encounter32.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64.png", 44, 40);
+    g_EncounterMap.SetMapSheet("./Assets/Games/R-Type/MapData/Encounter32.csv", "Assets/Games/R-Type/Textures/Maps/Level01Tiles64Transparent.png", 44, 40);
     g_EncounterMap.CreateEnemies("./Assets/Games/R-Type/MapData/Enemies01.csv", g_EnemyManager);
 
     //Set all references for needed collisions
@@ -85,14 +85,15 @@ void Encounter::Tick(float dt)
 
 void Encounter::Render()
 {
-    g_EncounterMap.DrawMap(camera);
-    player->Draw();
-    g_ProjectileManager.Draw();
-    g_EnemyManager.Draw();
     for (auto star : g_Stars)
     {
         star->Draw();
     }
+    g_EncounterMap.DrawMap(camera);
+    player->Draw();
+    g_ProjectileManager.Draw();
+    g_EnemyManager.Draw();
+
 
     if(g_BeamBar != nullptr)
     {
